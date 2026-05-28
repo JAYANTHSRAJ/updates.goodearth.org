@@ -158,7 +158,21 @@
         .lightbox-prev { left: 16px; }
         .lightbox-next { right: 16px; }
         
-        @media(max-width:960px){
+                /* Video Embed Cards Section */
+        .video-embed-section { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin: 36px 0; }
+        .video-embed-section.single-card { grid-template-columns: 1fr; max-width: 600px; margin: 36px auto; }
+        .video-embed-card { background: var(--white); border-radius: var(--radius-xl); overflow: hidden; box-shadow: 0 4px 20px rgba(0,53,164,0.05); border: 1px solid rgba(0,53,164,0.06); display: flex; flex-direction: column; }
+        .video-embed-header { background: var(--ge-blue); padding: 18px 24px; display: flex; align-items: center; gap: 12px; }
+        .video-embed-header .icon { width: 32px; height: 32px; border-radius: 8px; background: rgba(255,255,255,0.12); display: flex; align-items: center; justify-content: center; color: var(--ge-gold); flex-shrink: 0; }
+        .video-embed-header h3 { font-family: var(--font-heading); font-size: 0.92rem; font-weight: 600; color: var(--white); margin: 0; }
+        .video-embed-body { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; background: #000; }
+        .video-embed-body iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+        @media (max-width: 768px) {
+            .video-embed-section { grid-template-columns: 1fr; gap: 20px; }
+            .video-embed-section.single-card { margin: 36px 0; }
+        }
+        
+@media(max-width:960px){
             .site-container{padding-left:32px!important;padding-right:32px!important;}
             .content-layout{grid-template-columns:1fr;gap:40px;padding-top:48px;padding-bottom:64px;}
             .sidebar{position:static;}
@@ -262,7 +276,46 @@
                     <p>"The construction progress on Malhar Octave continues with great momentum. We are focused on maintaining our signature craftsmanship and sustainability standards across each block as we work steadily towards completing the next structural phases."</p>
                 </div>
 
-                <div class="whats-next fade-up">
+                                <!-- Video Embed Section -->
+                <div class="video-embed-section fade-up">
+                    <!-- Drone Video Card -->
+                    <div class="video-embed-card">
+                        <div class="video-embed-header">
+                            <div class="icon">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+                            </div>
+                            <h3>Drone's Eye View</h3>
+                        </div>
+                        <div class="video-embed-body">
+                            <iframe 
+                                src="https://www.youtube.com/embed/X8ovc-0o7oU?rel=0&modestbranding=1" 
+                                title="Drone's Eye View"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                    </div>
+
+                    <!-- 360 View Card -->
+                    <div class="video-embed-card">
+                        <div class="video-embed-header">
+                            <div class="icon">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>
+                            </div>
+                            <h3>360° View</h3>
+                        </div>
+                        <div class="video-embed-body">
+                            <iframe 
+                                src="https://my.matterport.com/show/?m=VwpKoGKZJyQ" 
+                                title="360° View"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                    </div>
+                </div>
+
+<div class="whats-next fade-up">
                     <div class="next-icon">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
                     </div>
