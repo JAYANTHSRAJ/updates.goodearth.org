@@ -1,0 +1,12 @@
+# OS temp files
+.DS_Store
+Thumbs.db
+
+# Large backup files
+*.webarchive
+
+# VS Code config
+.vscode/
+
+# Antigravity CLI config
+.antigravitycli/

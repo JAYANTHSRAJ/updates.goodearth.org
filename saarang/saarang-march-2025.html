@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saarang: Transforming a Rubber Plantation into a Thriving Food Forest | GoodEarth Saarang</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,300;0,400;0,500;1,300&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+
+        :root{--ge-blue:#0053a4;--ge-gold:#d69100;--ge-project:#2a6b4a;--ge-ivory:#f5f1eb;--ge-ivory-deep:#ece8e0;--ge-slate:#3a3a3a;--ge-slate-light:#6a6a6a;--white:#ffffff;--font-heading:'Manrope',sans-serif;--font-body:'Karla',sans-serif;--radius-xl:28px;--radius-lg:20px;--radius-pill:50px;}
+        *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+        html{scroll-behavior:smooth;}
+        body{font-family:var(--font-body);color:var(--ge-slate);background-color:var(--ge-ivory);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+        h1,h2,h3,h4,h5,h6{font-family:var(--font-heading);color:var(--ge-blue);}
+        a{text-decoration:none;color:inherit;}
+        img{max-width:100%;display:block;}
+        .fade-up{opacity:0;transform:translateY(28px);transition:opacity 0.7s ease-out,transform 0.7s cubic-bezier(0.16,1,0.3,1);}
+        .fade-up.is-visible{opacity:1;transform:translateY(0);}
+        .delay-1{transition-delay:.1s}.delay-2{transition-delay:.2s}.delay-3{transition-delay:.3s}
+        /* Buttons */
+        .btn-fill{position:relative;display:inline-flex;align-items:center;justify-content:center;padding:13px 26px;border-radius:var(--radius-pill);font-family:var(--font-heading);font-size:.88rem;font-weight:600;cursor:pointer;overflow:hidden;border:none;outline:none;transition:color .5s ease,box-shadow .3s ease;box-shadow:0 4px 15px rgba(0,0,0,.08);text-decoration:none;}
+        .btn-fill:hover{box-shadow:0 10px 28px rgba(0,0,0,.15);}
+        .btn-text{position:relative;z-index:2;padding-right:24px;}
+        .btn-dot{position:absolute;right:8px;top:50%;transform:translateY(-50%);width:28px;height:28px;border-radius:50%;z-index:1;transition:transform .6s cubic-bezier(.4,0,.2,1);}
+        .btn-fill:hover .btn-dot{transform:translateY(-50%) scale(40);}
+        .btn-gold{background:var(--ge-gold);color:var(--white);}.btn-gold .btn-dot{background:var(--ge-ivory);}.btn-gold:hover{color:var(--ge-slate);}
+        /* Header */
+        header{position:fixed;top:0;left:0;width:100%;padding:1.4rem 5%;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;z-index:1000;transition:background-color .4s ease,padding .4s ease,box-shadow .4s ease;}
+        header.scrolled{background-color:rgba(0,61,122,.97);backdrop-filter:blur(12px);padding:.9rem 5%;box-shadow:0 4px 24px rgba(0,0,0,.12);}
+        .logo-wrap{display:flex;align-items:center;z-index:1001;position:relative;}
+        .nav-pill{background:rgba(255,255,255,.12);backdrop-filter:blur(14px);border-radius:var(--radius-pill);padding:6px;display:flex;align-items:center;border:1px solid rgba(255,255,255,.15);}
+        .nav-pill ul{display:flex;list-style:none;gap:4px;}
+        .nav-pill a{color:rgba(255,255,255,.88);font-size:.84rem;font-weight:500;padding:8px 18px;border-radius:var(--radius-pill);transition:all .3s ease;display:inline-block;white-space:nowrap;}
+        .nav-pill a:hover{background:rgba(255,255,255,.14);color:#fff;}
+        .nav-pill li.active a{background:#fff;color:var(--ge-blue);}
+        .nav-dropdown{position:relative;}.nav-dropdown>a{display:flex;align-items:center;gap:5px;}
+        .nav-dropdown>a::after{content:'';display:inline-block;width:7px;height:7px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(45deg) translateY(-2px);transition:transform .3s ease;}
+        .nav-dropdown:hover>a::after{transform:rotate(-135deg) translateY(-2px);}
+        .dropdown-menu{position:absolute;top:calc(100% + 10px);left:50%;transform:translateX(-50%) translateY(8px);background:var(--white);border-radius:18px;padding:8px;min-width:210px;box-shadow:0 16px 40px rgba(0,53,164,.15);opacity:0;visibility:hidden;transition:all .3s cubic-bezier(.16,1,.3,1);border:1px solid rgba(0,53,164,.08);}
+        .nav-dropdown:hover .dropdown-menu{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0);}
+        .dropdown-menu a{display:block;color:var(--ge-slate)!important;font-size:.85rem;font-weight:500;padding:9px 16px;border-radius:12px;transition:background .2s ease;background:transparent!important;}
+        .dropdown-menu a:hover{background:var(--ge-ivory)!important;color:var(--ge-blue)!important;}
+        .dropdown-menu a.current{background:var(--ge-ivory)!important;color:var(--ge-project)!important;font-weight:700;}
+        .header-right{display:flex;justify-content:flex-end;align-items:center;gap:12px;z-index:1001;position:relative;}
+        .hamburger{width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.2);display:none;flex-direction:column;justify-content:center;align-items:center;gap:5px;cursor:pointer;transition:all .3s ease;outline:none;}
+        .hamburger span{width:18px;height:2px;background:#fff;transition:all .3s ease;border-radius:2px;}
+        .hamburger.active span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+        .hamburger.active span:nth-child(2){opacity:0;}
+        .hamburger.active span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+        .mobile-menu{position:fixed;top:0;left:0;width:100%;height:100vh;background:var(--ge-blue);z-index:999;display:flex;flex-direction:column;justify-content:center;align-items:center;opacity:0;visibility:hidden;transition:all .4s cubic-bezier(.16,1,.3,1);transform:translateY(-20px);}
+        .mobile-menu.active{opacity:1;visibility:visible;transform:translateY(0);}
+        .mobile-menu ul{list-style:none;text-align:center;width:100%;padding:0 40px;}
+        .mobile-menu li{margin-bottom:8px;}
+        .mobile-sub{display:none;margin-top:8px;padding:12px 0;}.mobile-sub.open{display:block;}
+        .mobile-menu a{color:rgba(255,255,255,.9);font-family:var(--font-heading);font-size:1.8rem;font-weight:400;transition:color .3s ease;padding:8px 0;display:block;}
+        .mobile-menu a:hover{color:var(--ge-gold);}
+        .mobile-sub a{font-size:1.1rem;color:rgba(255,255,255,.65);padding:5px 0;}
+        /* Hero */
+        .hero{position:relative;height:520px;display:flex;align-items:flex-end;overflow:hidden;}
+        .hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+        .hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,30,80,.82) 0%,rgba(0,30,80,.35) 60%,transparent 100%);}
+        .hero-content{position:relative;z-index:2;padding-bottom:56px;width:100%;}
+        .hero-breadcrumb{display:flex;align-items:center;gap:8px;margin-bottom:14px;font-size:.78rem;font-family:var(--font-heading);font-weight:600;letter-spacing:.5px;color:rgba(255,255,255,.7);}
+        .hero-breadcrumb a{color:rgba(255,255,255,.7);transition:color .2s;}.hero-breadcrumb a:hover{color:#fff;}
+        .hero-breadcrumb .sep{color:rgba(255,255,255,.4);}
+        .hero-content h1{font-size:2.6rem;font-weight:700;color:#fff;line-height:1.2;max-width:720px;margin-bottom:14px;}
+        .article-date{font-family:var(--font-heading);font-size:.82rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--ge-gold);}
+        /* Chapter nav */
+        .chapter-nav{position:sticky;top:64px;z-index:90;background:rgba(255,255,255,.97);border-bottom:1px solid rgba(0,0,0,.07);backdrop-filter:blur(12px);}
+        .chapter-pills{display:flex;gap:4px;padding:10px 5%;overflow-x:auto;scrollbar-width:none;}
+        .chapter-pills::-webkit-scrollbar{display:none;}
+        .chapter-pill{flex-shrink:0;font-family:var(--font-heading);font-size:.78rem;font-weight:600;padding:7px 18px;border-radius:var(--radius-pill);color:var(--ge-slate-light);border:1.5px solid transparent;transition:all .2s;white-space:nowrap;cursor:pointer;text-decoration:none;display:inline-block;}
+        .chapter-pill:hover{color:var(--ge-project);border-color:rgba(42,107,74,.3);}
+        .chapter-pill.active{color:var(--ge-project);background:rgba(42,107,74,.1);border-color:rgba(42,107,74,.3);}
+        /* Story article */
+        .story-article{max-width:820px;margin:0 auto;padding:64px 5% 80px;}
+        .article-lead{font-size:1.18rem;line-height:1.85;color:var(--ge-slate);margin-bottom:56px;padding-bottom:40px;border-bottom:1px solid var(--ge-ivory-deep);}
+        .article-lead strong{color:var(--ge-blue);}
+        .story-section{margin-bottom:72px;scroll-margin-top:132px;}
+        .section-label{display:flex;align-items:center;gap:14px;font-size:.7rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--ge-project);margin-bottom:14px;}
+        .section-label::after{content:'';flex:1;height:1px;background:var(--ge-project);opacity:.25;}
+        .section-title{font-size:1.75rem;color:var(--ge-blue);margin-bottom:18px;line-height:1.3;font-weight:700;}
+        .story-text{font-size:1.02rem;line-height:1.88;color:var(--ge-slate);margin-bottom:20px;}
+        .pull-quote{border-left:4px solid var(--ge-project);margin:36px 0;padding:20px 28px;background:rgba(42,107,74,.05);border-radius:0 12px 12px 0;font-size:1.2rem;font-style:italic;color:var(--ge-project);line-height:1.65;font-family:var(--font-heading);font-weight:500;}
+        .nature-note{display:flex;gap:18px;align-items:flex-start;background:rgba(42,107,74,.07);border-radius:14px;padding:22px 26px;margin:28px 0;}
+        .nature-icon{font-size:1.6rem;flex-shrink:0;margin-top:2px;}
+        .nature-note p{font-size:.97rem;line-height:1.75;color:var(--ge-slate);margin:0;}
+        .nature-note strong{color:var(--ge-project);}
+        .highlights-wrap{background:var(--white);border-radius:20px;padding:8px 24px;margin:28px 0;box-shadow:0 2px 16px rgba(0,53,164,.06);border-left:4px solid var(--ge-project);}
+        .highlights-list{list-style:none;padding:0;}
+        .highlights-list li{display:flex;align-items:flex-start;gap:14px;padding:14px 0;border-bottom:1px solid rgba(0,53,164,.06);}
+        .highlights-list li:last-child{border-bottom:none;}
+        .highlight-dot{width:8px;height:8px;border-radius:50%;background:var(--ge-project);flex-shrink:0;margin-top:7px;}
+        .highlights-list span{font-size:.95rem;color:var(--ge-slate);line-height:1.65;font-weight:300;}
+        .stat-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:36px 0;}
+        .stat-card{background:var(--ge-ivory-deep);border-radius:14px;padding:22px 18px;text-align:center;}
+        .stat-num{font-family:var(--font-heading);font-size:2.2rem;font-weight:800;color:var(--ge-project);line-height:1;}
+        .stat-unit{font-family:var(--font-heading);font-size:1.1rem;font-weight:700;color:var(--ge-project);}
+        .stat-label{font-size:.8rem;color:var(--ge-slate-light);margin-top:8px;line-height:1.4;}
+        .feature-block{background:var(--ge-project);border-radius:20px;padding:40px 44px;margin:40px 0;}
+        .feature-block .fb-tag{font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.65);margin-bottom:12px;}
+        .feature-block h3{color:white;font-size:1.55rem;margin-bottom:16px;line-height:1.3;}
+        .feature-block p{color:rgba(255,255,255,.88);line-height:1.8;font-size:.97rem;margin-bottom:12px;}
+        .feature-block p:last-child{margin-bottom:0;}
+        .img-solo{width:100%;border-radius:16px;overflow:hidden;margin:28px 0;}
+        .img-solo img{width:100%;height:440px;object-fit:cover;display:block;}
+        .img-caption{font-size:.8rem;color:var(--ge-slate-light);text-align:center;margin-top:-18px;margin-bottom:28px;font-style:italic;}
+        .img-duo{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:28px 0;}
+        .img-duo img{width:100%;height:300px;object-fit:cover;border-radius:12px;display:block;}
+        .img-trio{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin:28px 0;}
+        .img-trio img{width:100%;height:220px;object-fit:cover;border-radius:12px;display:block;}
+        .img-mosaic{display:grid;grid-template-columns:1.4fr 1fr;grid-template-rows:220px 220px;gap:10px;margin:28px 0;}
+        .img-mosaic img{width:100%;height:100%;object-fit:cover;border-radius:12px;display:block;}
+        .img-mosaic img:first-child{grid-row:span 2;height:450px;}
+        .img-quad{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:28px 0;}
+        .img-quad img{width:100%;height:210px;object-fit:cover;border-radius:12px;display:block;}
+        .img-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:28px 0;}
+        .img-strip img{width:100%;height:180px;object-fit:cover;border-radius:10px;display:block;}
+        /* More band */
+        .more-band{background:var(--ge-ivory-deep);padding:56px 5%;margin-top:80px;}
+        .more-band-title{font-family:var(--font-heading);font-size:1.3rem;color:var(--ge-blue);font-weight:700;margin-bottom:24px;}
+        .more-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;max-width:820px;margin:0 auto;}
+        .more-card{background:white;border-radius:14px;overflow:hidden;transition:box-shadow .25s,transform .25s;text-decoration:none;display:block;}
+        .more-card:hover{box-shadow:0 8px 28px rgba(0,0,0,.1);transform:translateY(-3px);}
+        .more-card-img{width:100%;height:140px;object-fit:cover;display:block;}
+        .more-card-body{padding:14px 16px;}
+        .more-card-date{font-size:.72rem;color:var(--ge-project);font-weight:600;letter-spacing:.05em;text-transform:uppercase;margin-bottom:5px;}
+        .more-card-title{font-family:var(--font-heading);font-size:.88rem;font-weight:600;color:var(--ge-slate);line-height:1.35;}
+        .more-card.active .more-card-title{color:var(--ge-project);}
+        /* Project nav */
+        .proj-nav{background:var(--ge-blue);padding:48px 5%;}
+        .proj-nav-inner{max-width:820px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap;}
+        .proj-nav h3{color:white;font-size:1.3rem;font-weight:700;}
+        .proj-nav p{color:rgba(255,255,255,.75);font-size:.9rem;margin-top:6px;}
+        .proj-nav-btn{flex-shrink:0;display:inline-flex;align-items:center;gap:10px;background:white;color:var(--ge-blue);font-family:var(--font-heading);font-size:.85rem;font-weight:700;padding:12px 24px;border-radius:var(--radius-pill);transition:box-shadow .2s;}
+        .proj-nav-btn:hover{box-shadow:0 6px 20px rgba(0,0,0,.2);}
+        /* Footer */
+        footer{background-color:var(--ge-blue);color:rgba(255,255,255,.75);padding:72px 5% 36px;border-radius:var(--radius-xl) var(--radius-xl) 0 0;margin-top:0;}
+        .footer-inner{max-width:1200px;margin:0 auto;}
+        .footer-top{display:flex;justify-content:space-between;align-items:flex-start;gap:40px;flex-wrap:wrap;margin-bottom:56px;}
+        .footer-brand{max-width:300px;}
+        .footer-logo-img{height:38px;width:auto;object-fit:contain;filter:brightness(0) invert(1);margin-bottom:14px;display:block;}
+        .footer-tagline{font-size:.9rem;color:rgba(255,255,255,.5);line-height:1.6;font-weight:300;}
+        .footer-links h4{font-family:var(--font-heading);font-size:.78rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--ge-gold);margin-bottom:18px;}
+        .footer-links ul{list-style:none;}
+        .footer-links li{margin-bottom:10px;}
+        .footer-links a{font-size:.92rem;color:rgba(255,255,255,.65);transition:color .3s;}
+        .footer-links a:hover{color:var(--white);}
+        .footer-bottom{padding-top:28px;border-top:1px solid rgba(255,255,255,.1);display:flex;justify-content:space-between;font-size:.82rem;color:rgba(255,255,255,.4);flex-wrap:wrap;gap:12px;}
+        /* Responsive */
+        @media(max-width:900px){
+            header{padding:1rem 5%;grid-template-columns:1fr auto;}
+            .nav-pill{display:none;}.header-right .btn-fill{display:none;}
+            .hamburger{display:flex;}
+            .hero{height:auto;min-height:440px;padding-top:80px;}
+            .hero-content{padding-bottom:48px;}
+            .footer-top{flex-direction:column;gap:40px;}
+        }
+        @media(max-width:600px){
+            .hero-content h1{font-size:1.9rem;}
+            .feature-block{padding:28px 24px;}
+            .stat-strip{grid-template-columns:1fr 1fr;}
+            .img-duo,.img-trio,.img-mosaic,.img-quad,.img-strip{grid-template-columns:1fr;}
+            .img-mosaic img:first-child{height:220px;grid-row:span 1;}
+            .img-solo img{height:280px;}
+            .img-duo img,.img-trio img,.img-quad img,.img-strip img{height:220px;}
+        }
+
+
+        /* Layout */
+        .site-container { max-width: 1200px; margin: 0 auto; padding: 0 5%; }
+        .content-layout { display: grid; grid-template-columns: 1fr 320px; gap: 52px; padding: 64px 0 80px; align-items: start; }
+        .story-article { max-width: none !important; margin: 0 !important; padding: 0 !important; min-width: 0; }
+
+        /* Sidebar */
+        .sidebar { position: sticky; top: 100px; display: flex; flex-direction: column; gap: 24px; }
+        .sidebar-card { background: var(--white); border-radius: var(--radius-xl); padding: 28px; box-shadow: 0 4px 20px rgba(0,53,164,0.06); }
+        .sidebar-card h4 { font-family: var(--font-heading); font-size: 0.72rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--ge-gold); margin-bottom: 18px; }
+        .recent-updates { display: flex; flex-direction: column; gap: 0; }
+        .recent-item { display: flex; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--ge-ivory-deep); align-items: flex-start; transition: opacity 0.3s; text-decoration: none; }
+        .recent-item:last-child { border-bottom: none; padding-bottom: 0; }
+        .recent-item:hover { opacity: 0.75; }
+        .recent-thumb { width: 56px; height: 48px; border-radius: 10px; overflow: hidden; flex-shrink: 0; }
+        .recent-thumb img { width: 100%; height: 100%; object-fit: cover; }
+        .recent-info { flex: 1; min-width: 0; }
+        .recent-date { font-family: var(--font-heading); font-size: 0.65rem; font-weight: 600; letter-spacing: 0.8px; text-transform: uppercase; color: var(--ge-slate-light); margin-bottom: 4px; }
+        .recent-title { font-family: var(--font-heading); font-size: 0.82rem; font-weight: 600; color: var(--ge-blue); line-height: 1.3; }
+        .recent-item.active .recent-title { color: var(--ge-project); }
+        .sidebar-blue { background: var(--ge-blue); }
+        .sidebar-blue h4 { color: var(--ge-gold); }
+        .sidebar-blue p { font-size: 0.88rem; color: rgba(255,255,255,0.68); line-height: 1.65; font-weight: 300; margin-bottom: 20px; }
+        .project-nav { display: flex; gap: 10px; flex-wrap: wrap; }
+        .project-nav a { font-size: 0.78rem; font-family: var(--font-heading); font-weight: 600; color: rgba(255,255,255,0.65); background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12); padding: 5px 12px; border-radius: var(--radius-pill); transition: all 0.3s; white-space: nowrap; text-decoration: none; }
+        .project-nav a:hover { background: rgba(255,255,255,0.16); color: var(--white); }
+        .project-nav a.active { background: var(--white); color: var(--ge-blue); }
+        @media (max-width: 960px) {
+            .content-layout { grid-template-columns: 1fr; gap: 40px; padding-top: 48px; padding-bottom: 64px; }
+            .sidebar { position: static; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <header id="mainHeader">
+        <a href="../index.html" class="logo-wrap">
+            <img src="../assets/goodearth-logo.png" alt="GoodEarth" style="height:36px;object-fit:contain;filter:brightness(0) invert(1);">
+        </a>
+        <nav class="nav-pill">
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li class="nav-dropdown active">
+                    <a href="#">Projects</a>
+                    <div class="dropdown-menu">
+                        <a href="../malhar-motif-updates.html">Malhar Motif</a>
+                        <a href="../malhar-octave-updates.html">Malhar Octave</a>
+                        <a href="../malhar-ochre-updates.html">Malhar Ochre</a>
+                        <a href="../malhar-cadence-updates.html">Malhar Cadence</a>
+                        <a href="../saarang-update.html" class="current">GoodEarth Saarang</a>
+                        <a href="../goodearth-umang.html">GoodEarth Umang</a>
+                    </div>
+                </li>
+                <li><a href="https://goodearth.org.in/contact/">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="header-right">
+            <a href="https://goodearth.org.in/contact/" class="btn-fill btn-gold" style="padding:10px 20px;font-size:.82rem;">
+                <span class="btn-text">Contact Us</span>
+                <span class="btn-dot" style="width:24px;height:24px;right:6px;"></span>
+            </a>
+            <button class="hamburger" id="hamburgerMenu" aria-label="Open menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <div class="mobile-menu" id="mobileNav">
+        <ul>
+            <li><a href="../index.html" class="mobile-link">Home</a></li>
+            <li>
+                <a href="#" class="mobile-link" id="mobileProjectsToggle">Projects</a>
+                <div class="mobile-sub" id="mobileProjectsSub">
+                    <a href="../malhar-motif-updates.html" class="mobile-link">Malhar Motif</a>
+                    <a href="../malhar-octave-updates.html" class="mobile-link">Malhar Octave</a>
+                    <a href="../malhar-ochre-updates.html" class="mobile-link">Malhar Ochre</a>
+                    <a href="../malhar-cadence-updates.html" class="mobile-link">Malhar Cadence</a>
+                    <a href="../saarang-update.html" class="mobile-link">GoodEarth Saarang</a>
+                    <a href="../goodearth-umang.html" class="mobile-link">GoodEarth Umang</a>
+                </div>
+            </li>
+            <li><a href="https://goodearth.org.in/contact/" class="mobile-link">Contact Us</a></li>
+        </ul>
+    </div>
+
+    <!-- Hero -->
+    <section class="hero">
+        <img class="hero-img" src="../assets/saarang/67d3bd32adc963ddef96f783_679376e14bc020287adec1ab_Saarang Hero.jpg" alt="Saarang: Transforming a Rubber Plantation into a Thriving Food Forest">
+        <div class="hero-overlay"></div>
+        <div class="hero-content" style="padding-left:5%;padding-right:5%;">
+            <div class="hero-breadcrumb">
+                <a href="../index.html">Project Updates</a>
+                <span class="sep">/</span>
+                <a href="../saarang-update.html">GoodEarth Saarang</a>
+            </div>
+            <h1>Saarang: Transforming a Rubber Plantation into a Thriving Food Forest</h1>
+            <div class="article-date">March 24, 2025</div>
+        </div>
+    </section>
+
+    <main>
+        <div class="site-container">
+            <div class="content-layout">
+                <article class="article-body">
+                    <div class="story-article">
+
+            <div class="article-lead fade-up">
+                GoodEarth Saarang is a holistic eco-village designed to blend sustainable living with ecological restoration. Nestled in the foothills of the Western Ghats, it is a community that fosters harmony between people and nature, built on the principles of regenerative agriculture, biodiversity, and conscious living. Land was once a monoculture rubber plantation, depleting soil health and biodiversity. At GoodEarth, we saw the potential to restore the land and took the initiative to regenerate it into a thriving food forest - a model for sustainable living. By restoring soil health, introducing native species, fruit trees, spices, and medicinal plants, and implementing natural water conservation systems, Saarang is evolving into a self-sustaining ecosystem. The return of butterflies, birds, and pollinators marks the revival of biodiversity, while regenerative farming practices ensure the land nourishes both people and nature.
+            </div>
+
+            <section class="story-section fade-up" id="vision">
+                <div class="section-label">Farm &amp; Forest</div>
+                <h2 class="section-title">A Vision for Sustainable Living</h2>
+                <p class="story-text">Along with the food forest, we are shaping Saarang into a holistic eco-village—a place where nature and community come together in harmony. Designed to offer a sustainable way of life, Saarang integrates eco-conscious homes, regenerative agriculture, natural water systems, and thoughtfully designed community spaces.</p>
+                <p class="story-text">Spread across 27 acres, the village is built on the principles of sustainable living, ecological restoration, and shared experiences. While 15 acres are dedicated to residential communities, the remaining 12 acres are being transformed into a regenerative food forest that will provide fresh, organic produce while restoring the land's natural balance.</p>
+                <p class="story-text">Here is the Progress of Our First Holistic Eco-Village</p>
+                <div class="stat-strip fade-up delay-1">
+                    <div class="stat-card"><div class="stat-num">27</div><div class="stat-unit">acres</div><div class="stat-label">Total Saarang land area</div></div>
+                    <div class="stat-card"><div class="stat-num">12</div><div class="stat-unit">acres</div><div class="stat-label">Regenerative food forest</div></div>
+                    <div class="stat-card"><div class="stat-num">20+</div><div class="stat-label">Varieties of plantains cultivated</div></div>
+                </div>
+                <div class="img-solo fade-up delay-2"><img src="../assets/saarang/67d3affa15d94526469ff63e_vision image.webp" alt="Saarang vision" loading="lazy"></div>
+                <div class="img-duo fade-up">
+                    <img src="../assets/saarang/67d3aeda0a086cde05264022_Below img.jpg" alt="Saarang land" loading="lazy">
+                    <img src="../assets/saarang/67d3b23a0a086cde0528f849_Saarang 1.jpg" alt="Saarang farm" loading="lazy">
+                </div>
+            </section>
+
+            <section class="story-section fade-up" id="biodiversity">
+                <div class="section-label">Biodiversity &amp; Farming</div>
+                <h2 class="section-title">Diversity in Plantation</h2>
+                <p class="story-text">We are proud to cultivate over 20 varieties of plantains, including rare types like red banana and blue java. These varieties add richness to the farm's biodiversity while supporting sustainable farming practices.</p>
+                <h2 class="section-title" style="margin-top:32px;">Sustainable Farming Practices</h2>
+                <p class="story-text">Our commitment to conservation and rehabilitation drives our farming approach. We focus on:</p>
+                <div class="highlights-wrap fade-up delay-1">
+                    <ul class="highlights-list">
+                        <li><span class="highlight-dot"></span><span><strong>Increasing biodiversity:</strong> Creating a harmonious ecosystem.</span></li>
+                        <li><span class="highlight-dot"></span><span><strong>Soil coverage:</strong> Using plants and organic matter to protect and enrich the soil.</span></li>
+                        <li><span class="highlight-dot"></span><span><strong>Water retention:</strong> Improving soil's capacity to hold water for healthier plants.</span></li>
+                        <li><span class="highlight-dot"></span><span><strong>Climate impact:</strong> Promoting practices that potentially mitigate climate change.</span></li>
+                    </ul>
+                </div>
+                <h3 style="font-family:var(--font-heading);color:var(--ge-blue);font-size:1.1rem;margin:24px 0 12px;">Core practices</h3>
+                <div class="highlights-wrap fade-up delay-2">
+                    <ul class="highlights-list">
+                        <li><span class="highlight-dot"></span><span>Cover cropping to protect soil and add nutrients.</span></li>
+                        <li><span class="highlight-dot"></span><span>Composting to recycle organic waste into rich fertilizer.</span></li>
+                        <li><span class="highlight-dot"></span><span>Agroforestry for a sustainable mix of trees and crops.</span></li>
+                    </ul>
+                </div>
+                <div class="img-trio fade-up delay-2">
+                    <img src="../assets/saarang/67d3b44215d9452646a3a1fe_Saarang 2.jpg" alt="Farm" loading="lazy">
+                    <img src="../assets/saarang/67d3b46f41cfe3a1572109a9_Saarang 3.jpg" alt="Farm" loading="lazy">
+                    <img src="../assets/saarang/67d3b4d36908d7d825e73ef2_Saarang 4.jpg" alt="Farm" loading="lazy">
+                </div>
+                <div class="img-trio fade-up">
+                    <img src="../assets/saarang/67d3b4fe0b62747dcd1a4cbc_Saarang 5.jpg" alt="Farm" loading="lazy">
+                    <img src="../assets/saarang/67d3b53250c856359f0f1d40_Saarang 6.jpg" alt="Farm" loading="lazy">
+                    <img src="../assets/saarang/67d3b59eb29d7b4d3d6d6f05_Saarang 7.jpg" alt="Farm" loading="lazy">
+                </div>
+                <h3 style="font-family:var(--font-heading);color:var(--ge-blue);font-size:1.1rem;margin:32px 0 12px;">Host plants for different types of butterflies.</h3>
+                <p class="story-text">The farm is home to host plants that attract a variety of butterfly species, including the common mime and zebra blue. These plants provide food and shelter for their eggs, larvae, and pupae, creating a vibrant ecosystem filled with colorful butterflies from across the region.</p>
+                <div class="img-duo fade-up delay-1">
+                    <img src="../assets/saarang/67d3b5fa50c856359f0fc1a7_Saarang 9.jpg" alt="Butterflies" loading="lazy">
+                    <img src="../assets/saarang/67d3b6070b4e7f8f035e708d_Saarang 8.jpg" alt="Nature" loading="lazy">
+                </div>
+            </section>
+
+            <section class="story-section fade-up" id="water">
+                <div class="section-label">Beehive &amp; Water</div>
+                <h2 class="section-title">Beehive Inspection</h2>
+                <p class="story-text">This week, our team, led by Mr. Biju T. and Mr. Gopinath M., inspected the beehive to monitor the queen's performance. Finding larvae and eggs confirmed a healthy and thriving colony. This midday inspection highlighted the essential role bees play in pollination and ecosystem health on the farm.</p>
+                <div class="img-duo fade-up delay-1">
+                    <img src="../assets/saarang/67d3b6a1828fd5bbc03a3ebe_Saarang 10.jpg" alt="Beehive" loading="lazy">
+                    <img src="../assets/saarang/67d3b7011b288e2e96318beb_Saarang 11.jpg" alt="Farm" loading="lazy">
+                </div>
+                <h2 class="section-title" style="margin-top:40px;">Irrigation and Water Conservation</h2>
+                <p class="story-text">Modern irrigation methods: We utilize sprinkler and drip irrigation to ensure soil moisture is consistently maintained, promoting robust plant growth and weather pattern development. Natural water sources: A river alongside the farm provides a reliable water supply. Rainwater harvesting: A sustainable way to conserve water for long-term use.</p>
+            </section>
+
+            <section class="story-section fade-up" id="construction">
+                <div class="section-label">Construction &amp; Landscape</div>
+                <h2 class="section-title">Construction and Landscape Updates</h2>
+                <div class="highlights-wrap fade-up delay-1">
+                    <ul class="highlights-list">
+                        <li><span class="highlight-dot"></span><span>Overhead storage water tank PCC work under process</span></li>
+                        <li><span class="highlight-dot"></span><span>Concrete lintel work is progressing smoothly for the first unit.</span></li>
+                        <li><span class="highlight-dot"></span><span>Paving work for internal residential roads is ongoing</span></li>
+                        <li><span class="highlight-dot"></span><span>Plinth beam construction is in progress for the first set of houses.</span></li>
+                        <li><span class="highlight-dot"></span><span>Ramp Construction: Connecting the Area Behind the Plots to the Farm.</span></li>
+                        <li><span class="highlight-dot"></span><span>Boundary wall: Built with random rubble masonry for a natural aesthetic</span></li>
+                        <li><span class="highlight-dot"></span><span>Trellises installed along the corners of the access road</span></li>
+                        <li><span class="highlight-dot"></span><span>Levelling and staircase construction in progress for Kids Park</span></li>
+                        <li><span class="highlight-dot"></span><span>Laterite boundary wall: Coping plastering and pointing work underway</span></li>
+                    </ul>
+                </div>
+                <div class="img-mosaic fade-up delay-2">
+                    <img src="../assets/saarang/67d3b736fcc1a9d3f3776158_Saarang 12.jpg" alt="Construction" loading="lazy">
+                    <img src="../assets/saarang/67d3b753fcc1a9d3f37782c7_Saarang 13.jpg" alt="Construction" loading="lazy">
+                    <img src="../assets/saarang/67d3b79a1d579ae8c1e33005_Saarang 14.jpg" alt="Construction" loading="lazy">
+                </div>
+                <div class="img-strip fade-up">
+                    <img src="../assets/saarang/67d3b7c132f793f2fdb73f2c_Saarang 15.jpg" alt="Construction" loading="lazy">
+                    <img src="../assets/saarang/67d3b7dce4de507dc502613c_Saarang 16.jpg" alt="Construction" loading="lazy">
+                    <img src="../assets/saarang/67d3b83ec50eea553cf295b9_Saarang 18.jpg" alt="Construction" loading="lazy">
+                </div>
+                <div class="img-duo fade-up delay-1">
+                    <img src="../assets/saarang/67d3b824635db8cd16959f46_Saarang 19.jpg" alt="Landscape" loading="lazy">
+                    <img src="../assets/saarang/67d4f70609f341d379f3205d_Saarang 22.jpg" alt="Saarang site" loading="lazy">
+                </div>
+            </section>
+
+        </div>
+                </article>
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-card">
+                <h4>Recent Updates</h4>
+                <div class="recent-updates">
+                    <a href="saarang-jan-2026.html" class="recent-item">
+                        <div class="recent-thumb"><img src="../assets/saarang/6997fa3257a3746ab8483378_Saarang 1.webp" alt=""></div>
+                        <div class="recent-info">
+                            <div class="recent-date">Jan 2026</div>
+                            <div class="recent-title">Quiet Signs of Life — January 2026</div>
+                        </div>
+                    </a>
+                    <a href="saarang-oct-nov-2025.html" class="recent-item">
+                        <div class="recent-thumb"><img src="../assets/saarang/692e800ce1ebffd987d0a71a_Updates Oct-Nov 2025-1.webp" alt=""></div>
+                        <div class="recent-info">
+                            <div class="recent-date">Oct–Nov 2025</div>
+                            <div class="recent-title">Construction & Birdwing Farmstay</div>
+                        </div>
+                    </a>
+                    <a href="saarang-sept-2025.html" class="recent-item">
+                        <div class="recent-thumb"><img src="../assets/saarang/68ef8a2a52fb312eeda32711_update-saarang-sept-2.jpg" alt=""></div>
+                        <div class="recent-info">
+                            <div class="recent-date">Sep 2025</div>
+                            <div class="recent-title">A Season of Growth — June to September</div>
+                        </div>
+                    </a>
+                    <a href="saarang-may-2025.html" class="recent-item">
+                        <div class="recent-thumb"><img src="../assets/saarang/684ffb8176abc5f8cdc99926_Saarang Blog2.webp" alt=""></div>
+                        <div class="recent-info">
+                            <div class="recent-date">May 2025</div>
+                            <div class="recent-title">Nature Retreats, Culture & Community</div>
+                        </div>
+                    </a>
+                    <a href="saarang-march-2025.html" class="recent-item active">
+                        <div class="recent-thumb"><img src="../assets/saarang/67d3bd32adc963ddef96f783_679376e14bc020287adec1ab_Saarang Hero.jpg" alt=""></div>
+                        <div class="recent-info">
+                            <div class="recent-date">Mar 2025</div>
+                            <div class="recent-title">Transforming a Rubber Plantation into a Food Forest</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="sidebar-card sidebar-blue">
+                <h4>About GoodEarth</h4>
+                <p>At GoodEarth, we bring together like-minded people with a common vision of building a sustainable future — one community at a time.</p>
+                <div class="project-nav">
+                    <a href="../malhar-motif-updates.html">Motif</a>
+                    <a href="../malhar-octave-updates.html">Octave</a>
+                    <a href="../malhar-ochre-updates.html">Ochre</a>
+                    <a href="../malhar-cadence-updates.html">Cadence</a>
+                    <a href="../saarang-update.html" class="active">Saarang</a>
+                    <a href="../goodearth-umang.html">Umang</a>
+                </div>
+            </div>
+        </aside>
+            </div>
+        </div>
+        <div class="more-band">
+            <div style="max-width:820px;margin:0 auto;">
+                <div class="more-band-title">More from Saarang</div>
+                <div class="more-cards">
+            <a href="saarang-jan-2026.html" class="more-card "><img src="../assets/saarang/6997fa3257a3746ab8483378_Saarang 1.webp" alt="January 2026" class="more-card-img" loading="lazy"><div class="more-card-body"><div class="more-card-date">January 2026</div><div class="more-card-title">Quiet Signs of Life — January 2026</div></div></a>
+            <a href="saarang-oct-nov-2025.html" class="more-card "><img src="../assets/saarang/692e800ce1ebffd987d0a71a_Updates Oct-Nov 2025-1.webp" alt="October – November 2025" class="more-card-img" loading="lazy"><div class="more-card-body"><div class="more-card-date">October – November 2025</div><div class="more-card-title">Construction & Birdwing Farmstay</div></div></a>
+            <a href="saarang-sept-2025.html" class="more-card "><img src="../assets/saarang/68ef8a2a52fb312eeda32711_update-saarang-sept-2.jpg" alt="June – September 2025" class="more-card-img" loading="lazy"><div class="more-card-body"><div class="more-card-date">June – September 2025</div><div class="more-card-title">A Season of Growth — June to September</div></div></a>
+            <a href="saarang-may-2025.html" class="more-card "><img src="../assets/saarang/684ffb8176abc5f8cdc99926_Saarang Blog2.webp" alt="May 2025" class="more-card-img" loading="lazy"><div class="more-card-body"><div class="more-card-date">May 2025</div><div class="more-card-title">Nature Retreats, Culture & Community</div></div></a>
+            <a href="#" class="more-card active"><img src="../assets/saarang/67d3bd32adc963ddef96f783_679376e14bc020287adec1ab_Saarang Hero.jpg" alt="March 2025" class="more-card-img" loading="lazy"><div class="more-card-body"><div class="more-card-date">March 2025</div><div class="more-card-title">Transforming a Rubber Plantation into a Food Forest</div></div></a></div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <img src="../assets/goodearth-logo.png" alt="GoodEarth" class="footer-logo-img">
+                    <p class="footer-tagline">Cultivating conscious communities since 1996. Regenerative living rooted in nature, craft, and community.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Projects</h4>
+                    <ul>
+                        <li><a href="../malhar-motif-updates.html">Malhar Motif</a></li>
+                        <li><a href="../malhar-octave-updates.html">Malhar Octave</a></li>
+                        <li><a href="../malhar-ochre-updates.html">Malhar Ochre</a></li>
+                        <li><a href="../malhar-cadence-updates.html">Malhar Cadence</a></li>
+                        <li><a href="../saarang-update.html">GoodEarth Saarang</a></li>
+                        <li><a href="../goodearth-umang.html">GoodEarth Umang</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Connect</h4>
+                    <ul>
+                        <li><a href="https://goodearth.org.in">goodearth.org.in</a></li>
+                        <li><a href="https://goodearth.org.in/contact/">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 GoodEarth. All Rights Reserved. Images courtesy GoodEarth Communities.</p>
+                <p>Kambipura, Karnataka, India</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+    (() => {
+        // Scroll header
+        const hdr = document.getElementById('mainHeader');
+        window.addEventListener('scroll', () => hdr.classList.toggle('scrolled', window.scrollY > 60), { passive: true });
+
+        // Hamburger
+        const hamburger = document.getElementById('hamburgerMenu');
+        const mobileNav = document.getElementById('mobileNav');
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            mobileNav.classList.toggle('active');
+            document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : '';
+        });
+        document.getElementById('mobileProjectsToggle').addEventListener('click', e => {
+            e.preventDefault();
+            document.getElementById('mobileProjectsSub').classList.toggle('open');
+        });
+        document.querySelectorAll('.mobile-link:not(#mobileProjectsToggle)').forEach(l => l.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            mobileNav.classList.remove('active');
+            document.body.style.overflow = '';
+        }));
+
+        // Fade-up
+        const io = new IntersectionObserver((entries) => {
+            entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('is-visible'); io.unobserve(e.target); } });
+        }, { threshold: 0.06 });
+        document.querySelectorAll('.fade-up').forEach(el => io.observe(el));
+    })();
+    </script>
+</body>
+</html>

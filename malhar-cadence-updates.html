@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Malhar Cadence Updates | GoodEarth</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,300;0,400;0,500;1,300&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ge-blue:        #0053a4;
+            --ge-gold:        #d69100;
+            --ge-project:     #3d5a7a;
+            --ge-ivory:       #f5f1eb;
+            --ge-ivory-deep:  #ece8e0;
+            --ge-slate:       #3a3a3a;
+            --ge-slate-light: #6a6a6a;
+            --white:          #ffffff;
+            --font-heading:   'Manrope', sans-serif;
+            --font-body:      'Karla', sans-serif;
+            --radius-xl:      28px;
+            --radius-pill:    50px;
+            --tl-item-w:      200px;
+            --tl-img-h:       280px;
+            --bullet-size:    48px;
+        }
+
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: var(--font-body); color: var(--ge-slate); background-color: var(--ge-ivory); line-height: 1.6; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+        h1,h2,h3,h4,h5,h6 { font-family: var(--font-heading); color: var(--ge-blue); }
+        a { text-decoration: none; color: inherit; }
+        img { max-width: 100%; display: block; }
+
+        .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.75s ease-out, transform 0.75s cubic-bezier(0.16,1,0.3,1); }
+        .fade-up.is-visible { opacity: 1; transform: translateY(0); }
+        .delay-1 { transition-delay: 0.1s; } .delay-2 { transition-delay: 0.2s; }
+        .delay-3 { transition-delay: 0.3s; }
+
+        /* Buttons */
+        .btn-fill { position: relative; display: inline-flex; align-items: center; justify-content: center; padding: 14px 28px; border-radius: var(--radius-pill); font-family: var(--font-heading); font-size: 0.9rem; font-weight: 600; cursor: pointer; overflow: hidden; border: none; outline: none; transition: color 0.5s ease, box-shadow 0.3s ease; box-shadow: 0 4px 15px rgba(0,0,0,0.08); text-decoration: none; letter-spacing: 0.2px; }
+        .btn-fill:hover { box-shadow: 0 10px 28px rgba(0,0,0,0.18); }
+        .btn-text { position: relative; z-index: 2; padding-right: 26px; }
+        .btn-dot { position: absolute; right: 8px; top: 50%; transform: translateY(-50%); width: 32px; height: 32px; border-radius: 50%; z-index: 1; transition: transform 0.6s cubic-bezier(0.4,0,0.2,1); }
+        .btn-fill:hover .btn-dot { transform: translateY(-50%) scale(40); }
+        .btn-gold { background: var(--ge-gold); color: var(--white); }
+        .btn-gold .btn-dot { background: var(--ge-ivory); }
+        .btn-gold:hover { color: var(--ge-slate); }
+
+        /* Header */
+        header { position: fixed; top: 0; left: 0; width: 100%; padding: 1.4rem 5%; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; z-index: 1000; transition: background-color 0.4s ease, padding 0.4s ease, box-shadow 0.4s ease; }
+        header.scrolled { background-color: rgba(0,61,122,0.97); backdrop-filter: blur(12px); padding: 0.9rem 5%; box-shadow: 0 4px 24px rgba(0,0,0,0.12); }
+        .logo-wrap { display: flex; align-items: center; z-index: 1001; position: relative; }
+        .nav-pill { background: rgba(255,255,255,0.12); backdrop-filter: blur(14px); border-radius: var(--radius-pill); padding: 6px; display: flex; align-items: center; border: 1px solid rgba(255,255,255,0.15); }
+        .nav-pill ul { display: flex; list-style: none; gap: 4px; }
+        .nav-pill a { color: rgba(255,255,255,0.88); font-size: 0.84rem; font-weight: 500; padding: 8px 18px; border-radius: var(--radius-pill); transition: all 0.3s ease; display: inline-block; white-space: nowrap; }
+        .nav-pill a:hover { background: rgba(255,255,255,0.14); color: #fff; }
+        .nav-pill li.active a { background: #fff; color: var(--ge-blue); }
+        .nav-dropdown { position: relative; }
+        .nav-dropdown > a { display: flex; align-items: center; gap: 5px; }
+        .nav-dropdown > a::after { content: ''; display: inline-block; width: 7px; height: 7px; border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor; transform: rotate(45deg) translateY(-2px); transition: transform 0.3s ease; }
+        .nav-dropdown:hover > a::after { transform: rotate(-135deg) translateY(-2px); }
+        .dropdown-menu { position: absolute; top: calc(100% + 10px); left: 50%; transform: translateX(-50%) translateY(8px); background: var(--white); border-radius: 18px; padding: 8px; min-width: 210px; box-shadow: 0 16px 40px rgba(0,53,164,0.15); opacity: 0; visibility: hidden; transition: all 0.3s cubic-bezier(0.16,1,0.3,1); border: 1px solid rgba(0,53,164,0.08); }
+        .nav-dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
+        .dropdown-menu a { display: block; color: var(--ge-slate) !important; font-size: 0.85rem; font-weight: 500; padding: 9px 16px; border-radius: 12px; transition: background 0.2s ease; background: transparent !important; }
+        .dropdown-menu a:hover { background: var(--ge-ivory) !important; color: var(--ge-blue) !important; }
+        .dropdown-menu a.current { background: var(--ge-ivory) !important; color: var(--ge-blue) !important; font-weight: 700; }
+        .header-right { display: flex; justify-content: flex-end; align-items: center; gap: 12px; z-index: 1001; position: relative; }
+        .hamburger { width: 44px; height: 44px; border-radius: 50%; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.2); display: none; flex-direction: column; justify-content: center; align-items: center; gap: 5px; cursor: pointer; transition: all 0.3s ease; outline: none; }
+        .hamburger span { width: 18px; height: 2px; background: #fff; transition: all 0.3s ease; border-radius: 2px; }
+        .hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .hamburger.active span:nth-child(2) { opacity: 0; }
+        .hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+        .mobile-menu { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: var(--ge-blue); z-index: 999; display: flex; flex-direction: column; justify-content: center; align-items: center; opacity: 0; visibility: hidden; transition: all 0.4s cubic-bezier(0.16,1,0.3,1); transform: translateY(-20px); }
+        .mobile-menu.active { opacity: 1; visibility: visible; transform: translateY(0); }
+        .mobile-menu ul { list-style: none; text-align: center; width: 100%; padding: 0 40px; }
+        .mobile-menu li { margin-bottom: 8px; }
+        .mobile-sub { display: none; margin-top: 8px; padding: 12px 0; }
+        .mobile-sub.open { display: block; }
+        .mobile-menu a { color: rgba(255,255,255,0.9); font-family: var(--font-heading); font-size: 1.8rem; font-weight: 400; transition: color 0.3s ease; padding: 8px 0; display: block; }
+        .mobile-menu a:hover { color: var(--ge-gold); }
+        .mobile-sub a { font-size: 1.1rem; color: rgba(255,255,255,0.65); padding: 5px 0; }
+        .mobile-sub a:hover { color: var(--ge-gold); }
+
+        /* Hero */
+        .hero { position: relative; height: 70vh; min-height: 480px; overflow: hidden; display: flex; align-items: flex-end; border-radius: 0 0 var(--radius-xl) var(--radius-xl); }
+        .hero-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transform: scale(1.04); animation: slowZoom 18s ease-out forwards; }
+        @keyframes slowZoom { to { transform: scale(1); } }
+        .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,30,70,0.85) 0%, rgba(0,30,70,0.3) 55%, rgba(0,0,0,0.2) 100%); }
+        .hero-content { position: relative; z-index: 2; padding: 0 5% 60px; width: 100%; }
+        .hero-breadcrumb { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-heading); font-size: 0.75rem; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--ge-gold); margin-bottom: 16px; }
+        .hero-breadcrumb a { color: rgba(255,255,255,0.6); transition: color 0.3s; }
+        .hero-breadcrumb a:hover { color: var(--white); }
+        .hero-breadcrumb .sep { color: rgba(255,255,255,0.3); }
+        .hero-content h1 { font-size: clamp(2.4rem, 5vw, 4rem); font-weight: 300; color: var(--white); line-height: 1.1; margin-bottom: 12px; }
+        .hero-content h1 strong { font-weight: 700; }
+        .hero-tag { display: inline-block; background: rgba(214,145,0,0.2); border: 1px solid rgba(214,145,0,0.4); color: var(--ge-gold); font-family: var(--font-heading); font-size: 0.75rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 5px 14px; border-radius: var(--radius-pill); margin-bottom: 18px; }
+
+        /* Layout */
+        .site-container { max-width: 1200px; margin: 0 auto; padding: 0 5%; }
+        .section-pad { padding: 80px 0; }
+        .vertical-line { width: 2px; height: 40px; background-color: var(--ge-gold); margin-bottom: 18px; border-radius: 2px; }
+        .section-title { font-size: clamp(1.8rem, 3vw, 2.4rem); font-weight: 400; line-height: 1.15; margin-bottom: 12px; }
+        .subtext { font-size: clamp(0.95rem, 1.8vw, 1.05rem); color: var(--ge-slate-light); font-weight: 300; line-height: 1.75; }
+
+        /* Project intro strip */
+        .project-intro { background: var(--white); border-radius: var(--radius-xl); padding: 48px 56px; display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 40px; margin: 48px 0 0; box-shadow: 0 4px 24px rgba(0,53,164,0.06); }
+        .intro-item { border-left: 3px solid var(--ge-gold); padding-left: 20px; }
+        .intro-label { font-family: var(--font-heading); font-size: 0.72rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--ge-slate-light); margin-bottom: 6px; }
+        .intro-value { font-family: var(--font-heading); font-size: 1.05rem; font-weight: 600; color: var(--ge-blue); line-height: 1.3; }
+
+        /* ══ HORIZONTAL TIMELINE ══ */
+        .tl-section { position: relative; }
+        .tl-scroll-outer { position: relative; }
+        .tl-scroll-outer::before,
+        .tl-scroll-outer::after { content: ''; position: absolute; top: 0; bottom: 0; width: 72px; z-index: 10; pointer-events: none; }
+        .tl-scroll-outer::before { left:0;  background: linear-gradient(to right, var(--ge-ivory), transparent); }
+        .tl-scroll-outer::after  { right:0; background: linear-gradient(to left,  var(--ge-ivory), transparent); }
+        .tl-track { display: flex; overflow-x: auto; scroll-behavior: smooth; padding: 0 60px 16px; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+        .tl-track::-webkit-scrollbar { display: none; }
+
+        .tl-item { flex: 0 0 var(--tl-item-w); display: flex; flex-direction: column; align-items: center; cursor: pointer; user-select: none; }
+        .tl-date { font-family: var(--font-heading); font-size: 0.72rem; font-weight: 500; color: var(--ge-slate-light); text-align: center; margin-bottom: 10px; line-height: 1.35; white-space: nowrap; transition: color 0.3s; }
+        .tl-bullet-row { width: 100%; display: flex; align-items: center; }
+        .tl-h-line { flex: 1; height: 1px; background: #d6d6d6; transition: background 0.35s; }
+        .tl-bullet { width: var(--bullet-size); height: var(--bullet-size); border-radius: 50%; flex-shrink: 0; background: #e2ddd5; display: flex; align-items: center; justify-content: center; transition: background 0.35s, transform 0.35s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.35s; position: relative; z-index: 2; }
+        .tl-bullet svg { width: 18px; height: 18px; color: #fff; }
+        .tl-v-line { width: 1px; height: 20px; background: #d6d6d6; transition: background 0.35s; }
+        .tl-pointer { width: 20px; height: 10px; background: #d6d6d6; clip-path: polygon(50% 100%, 0% 0%, 100% 0%); transition: background 0.35s; }
+        .tl-img-wrap { width: calc(var(--tl-item-w) - 20px); height: var(--tl-img-h); overflow: hidden; border-top-left-radius: 12px; border-top-right-radius: 12px; }
+        .tl-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.45s ease; }
+        .tl-item:hover .tl-img-wrap img { transform: scale(1.07); }
+        .tl-card-body { width: calc(var(--tl-item-w) - 20px); background: var(--ge-ivory-deep); padding: 12px 14px 16px; border-radius: 0 0 12px 12px; }
+        .tl-card-title { font-family: var(--font-heading); font-size: 0.78rem; font-weight: 600; color: var(--ge-slate); line-height: 1.35; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; transition: color 0.3s; }
+
+        /* Active */
+        .tl-item.active .tl-date         { color: var(--ge-project); font-weight: 700; }
+        .tl-item.active .tl-h-line       { background: var(--ge-project); }
+        .tl-item.active .tl-bullet       { background: var(--ge-project); transform: scale(1.15); box-shadow: 0 0 0 5px rgba(61,90,122,0.18); }
+        .tl-item.active .tl-v-line       { background: var(--ge-project); }
+        .tl-item.active .tl-pointer      { background: var(--ge-project); }
+        .tl-item.active .tl-card-body    { background: var(--ge-project); }
+        .tl-item.active .tl-card-title   { color: #fff; }
+
+        /* Content panel */
+        .cp-wrap { position: relative; margin-top: 0; }
+        .cp-arrow { position: absolute; top: 50%; z-index: 10; transform: translateY(-50%); width: 54px; height: 54px; border-radius: 0; background: var(--white); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--ge-slate); transition: background 0.3s, color 0.3s; box-shadow: 0 4px 16px rgba(0,0,0,0.1); }
+        .cp-arrow:hover { background: var(--ge-project); color: #fff; }
+        .cp-arrow:disabled { opacity: 0.25; cursor: default; }
+        .cp-arrow-prev { left: 0; }
+        .cp-arrow-next { right: 0; }
+        .cp-card { background: var(--ge-ivory-deep); border-radius: 24px; margin: 0 64px; padding: 44px 52px 48px; min-height: 260px; display: flex; flex-direction: column; justify-content: center; transition: opacity 0.3s ease; }
+        .cp-card.fading { opacity: 0; }
+        .cp-meta { font-family: var(--font-heading); font-size: 0.68rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--ge-project); margin-bottom: 14px; }
+        .cp-title { font-family: var(--font-heading); font-size: clamp(1.3rem, 2.8vw, 1.9rem); font-weight: 700; color: var(--ge-slate); line-height: 1.2; margin-bottom: 18px; }
+        .cp-text { font-size: 1rem; color: var(--ge-slate-light); font-weight: 300; line-height: 1.85; max-width: 780px; margin-bottom: 28px; }
+        .cp-footer { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+        .cp-cta { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-heading); font-size: 0.82rem; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; color: var(--ge-project); border: 2px solid var(--ge-project); padding: 11px 24px; border-radius: var(--radius-pill); transition: background 0.3s, color 0.3s; }
+        .cp-cta:hover { background: var(--ge-project); color: #fff; }
+        .cp-counter { font-family: var(--font-heading); font-size: 0.75rem; font-weight: 600; color: var(--ge-slate-light); letter-spacing: 1px; margin-left: auto; }
+        .cp-counter strong { color: var(--ge-project); }
+
+        /* Footer */
+        footer { background-color: var(--ge-blue); color: rgba(255,255,255,0.75); padding: 72px 5% 36px; border-radius: var(--radius-xl) var(--radius-xl) 0 0; margin-top: 80px; }
+        .footer-inner { max-width: 1200px; margin: 0 auto; }
+        .footer-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 40px; flex-wrap: wrap; margin-bottom: 56px; }
+        .footer-brand { max-width: 300px; }
+        .footer-logo-img { height: 38px; width: auto; filter: brightness(0) invert(1); margin-bottom: 14px; display: block; }
+        .footer-tagline { font-size: 0.9rem; color: rgba(255,255,255,0.5); line-height: 1.6; font-weight: 300; }
+        .footer-links h4 { font-family: var(--font-heading); font-size: 0.78rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--ge-gold); margin-bottom: 18px; }
+        .footer-links ul { list-style: none; }
+        .footer-links li { margin-bottom: 10px; }
+        .footer-links a { font-size: 0.92rem; color: rgba(255,255,255,0.65); transition: color 0.3s ease; }
+        .footer-links a:hover { color: var(--white); }
+        .footer-bottom { padding-top: 28px; border-top: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: space-between; align-items: center; font-size: 0.82rem; color: rgba(255,255,255,0.4); flex-wrap: wrap; gap: 12px; }
+
+        @media (max-width: 900px) {
+            :root { --tl-item-w: 160px; --tl-img-h: 220px; --bullet-size: 40px; }
+            .site-container { padding-left: 32px !important; padding-right: 32px !important; }
+            header { padding: 1rem 5%; grid-template-columns: 1fr auto; }
+            .nav-pill { display: none; }
+            .header-right .btn-fill { display: none; }
+            .hamburger { display: flex; }
+            .project-intro { grid-template-columns: 1fr 1fr; gap: 24px; padding: 36px 32px; }
+            .footer-top { flex-direction: column; gap: 32px; }
+            .hero { height: auto; min-height: 440px; padding-top: 80px; }
+            .hero-content { padding: 40px 5% 56px; }
+            .cp-card { padding: 32px 28px 36px; margin: 0 48px; }
+        }
+        @media (max-width: 600px) {
+            :root { --tl-item-w: 140px; --tl-img-h: 190px; --bullet-size: 36px; }
+            .site-container { padding-left: 24px !important; padding-right: 24px !important; }
+            .project-intro { grid-template-columns: 1fr; }
+            .hero-content h1 { font-size: 2.6rem; }
+            .section-pad { padding-top: 56px; padding-bottom: 56px; }
+            .cp-card { margin: 0 42px; padding: 24px 20px 28px; }
+            .cp-arrow { width: 42px; height: 42px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header id="mainHeader">
+        <a href="index.html" class="logo-wrap">
+            <img src="assets/goodearth-logo.png" alt="GoodEarth" style="height:36px;object-fit:contain;filter:brightness(0) invert(1);">
+        </a>
+        <nav class="nav-pill">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li class="nav-dropdown active">
+                    <a href="#">Projects</a>
+                    <div class="dropdown-menu">
+                        <a href="malhar-motif-updates.html">Malhar Motif</a>
+                        <a href="malhar-octave-updates.html">Malhar Octave</a>
+                        <a href="malhar-ochre-updates.html">Malhar Ochre</a>
+                        <a href="malhar-cadence-updates.html" class="current">Malhar Cadence</a>
+                        <a href="saarang-update.html">GoodEarth Saarang</a>
+                        <a href="goodearth-umang.html">GoodEarth Umang</a>
+                    </div>
+                </li>
+                <li><a href="https://goodearth.org.in/contact/">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="header-right">
+            <a href="https://goodearth.org.in/contact/" class="btn-fill btn-gold" style="padding:10px 20px;font-size:0.82rem;">
+                <span class="btn-text">Contact Us</span>
+                <span class="btn-dot" style="width:24px;height:24px;right:6px;"></span>
+            </a>
+            <button class="hamburger" id="hamburgerMenu" aria-label="Open menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileNav">
+        <ul>
+            <li><a href="index.html" class="mobile-link">Home</a></li>
+            <li>
+                <a href="#" class="mobile-link" id="mobileProjectsToggle">Projects ▾</a>
+                <div class="mobile-sub" id="mobileProjectsSub">
+                    <a href="malhar-motif-updates.html" class="mobile-link">Malhar Motif</a>
+                    <a href="malhar-octave-updates.html" class="mobile-link">Malhar Octave</a>
+                    <a href="malhar-ochre-updates.html" class="mobile-link">Malhar Ochre</a>
+                    <a href="malhar-cadence-updates.html" class="mobile-link">Malhar Cadence</a>
+                    <a href="saarang-update.html" class="mobile-link">GoodEarth Saarang</a>
+                    <a href="goodearth-umang.html" class="mobile-link">GoodEarth Umang</a>
+                </div>
+            </li>
+            <li><a href="https://goodearth.org.in/contact/" class="mobile-link">Contact Us</a></li>
+        </ul>
+    </div>
+
+    <!-- Hero -->
+    <section class="hero">
+        <img class="hero-img" src="assets/cadence/cadence%20hero%201.webp" alt="Malhar Cadence">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <div class="hero-breadcrumb">
+                <a href="index.html">Project Updates</a>
+                <span class="sep">/</span>
+                <span>Malhar Cadence</span>
+            </div>
+            <div class="hero-tag">Malhar Eco-Village · 10th Community</div>
+            <h1>Malhar <strong>Cadence</strong></h1>
+            <p style="color:rgba(255,255,255,0.72);font-size:1.05rem;font-weight:300;max-width:520px;line-height:1.7;">A visual journey through the construction of Cadence — from ground-breaking to completion.</p>
+        </div>
+    </section>
+
+    <!-- Project Intro -->
+    <section class="site-container">
+        <div class="project-intro fade-up">
+            <div class="intro-item">
+                <div class="intro-label">Location</div>
+                <div class="intro-value">Malhar Eco-Village<br>Bangalore</div>
+            </div>
+            <div class="intro-item">
+                <div class="intro-label">Community</div>
+                <div class="intro-value">10th Community<br>of Malhar Eco-Village</div>
+            </div>
+            <div class="intro-item">
+                <div class="intro-label">Homes</div>
+                <div class="intro-value">145 Apartments</div>
+            </div>
+            <div class="intro-item">
+                <div class="intro-label">About</div>
+                <div class="intro-value">Low-rise apartment community built around the theme of sky or terrace gardens.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline -->
+    <section class="section-pad site-container">
+        <div style="margin-bottom:40px;">
+            <div class="vertical-line"></div>
+            <h2 class="section-title fade-up">Construction Timeline</h2>
+            <p class="subtext fade-up delay-1">A chronological record of Cadence's journey — from ground-breaking to completion.</p>
+        </div>
+
+        <div class="tl-section fade-up delay-2">
+            <div class="tl-scroll-outer">
+                <div class="tl-track" id="tl-track">
+
+                    <div class="tl-item" data-index="0">
+                        <div class="tl-date">13 April 2026</div>
+                        <div class="tl-bullet-row">
+                            <div class="tl-h-line"></div>
+                            <div class="tl-bullet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg></div>
+                            <div class="tl-h-line"></div>
+                        </div>
+                        <div class="tl-v-line"></div>
+                        <div class="tl-pointer"></div>
+                        <div class="tl-img-wrap"><img src="assets/cadence/cadence%20hero%201.webp" alt="March 2026"></div>
+                        <div class="tl-card-body"><div class="tl-card-title">March 2026 Update</div></div>
+                    </div>
+
+                    <div class="tl-item" data-index="1">
+                        <div class="tl-date">5 January 2026</div>
+                        <div class="tl-bullet-row">
+                            <div class="tl-h-line"></div>
+                            <div class="tl-bullet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg></div>
+                            <div class="tl-h-line"></div>
+                        </div>
+                        <div class="tl-v-line"></div>
+                        <div class="tl-pointer"></div>
+                        <div class="tl-img-wrap"><img src="assets/cadence/Cadence_-_2025-12-16__3_.JPG" alt="December 2025"></div>
+                        <div class="tl-card-body"><div class="tl-card-title">December 2025 Update</div></div>
+                    </div>
+
+                    <div class="tl-item" data-index="2">
+                        <div class="tl-date">28 October 2025</div>
+                        <div class="tl-bullet-row">
+                            <div class="tl-h-line"></div>
+                            <div class="tl-bullet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg></div>
+                            <div class="tl-h-line"></div>
+                        </div>
+                        <div class="tl-v-line"></div>
+                        <div class="tl-pointer"></div>
+                        <div class="tl-img-wrap"><img src="assets/cadence/cadence-oct-updates.jpg" alt="October 2025"></div>
+                        <div class="tl-card-body"><div class="tl-card-title">October 2025 Update</div></div>
+                    </div>
+
+                    <div class="tl-item" data-index="3">
+                        <div class="tl-date">13 August 2025</div>
+                        <div class="tl-bullet-row">
+                            <div class="tl-h-line"></div>
+                            <div class="tl-bullet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg></div>
+                            <div class="tl-h-line"></div>
+                        </div>
+                        <div class="tl-v-line"></div>
+                        <div class="tl-pointer"></div>
+                        <div class="tl-img-wrap"><img src="assets/cadence/Cadence%20-%20Aug25-1.webp" alt="August 2025"></div>
+                        <div class="tl-card-body"><div class="tl-card-title">August 2025 Update</div></div>
+                    </div>
+
+                    <div class="tl-item" data-index="4">
+                        <div class="tl-date">13 May 2025</div>
+                        <div class="tl-bullet-row">
+                            <div class="tl-h-line"></div>
+                            <div class="tl-bullet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg></div>
+                            <div class="tl-h-line"></div>
+                        </div>
+                        <div class="tl-v-line"></div>
+                        <div class="tl-pointer"></div>
+                        <div class="tl-img-wrap"><img src="assets/cadence/Cadence 01.jpg" alt="May 2025"></div>
+                        <div class="tl-card-body"><div class="tl-card-title">Construction Commences</div></div>
+                    </div>
+
+                    <div class="tl-item" data-index="5">
+                        <div class="tl-date">23 Nov 2024</div>
+                        <div class="tl-bullet-row">
+                            <div class="tl-h-line"></div>
+                            <div class="tl-bullet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+                            <div class="tl-h-line"></div>
+                        </div>
+                        <div class="tl-v-line"></div>
+                        <div class="tl-pointer"></div>
+                        <div class="tl-img-wrap"><img src="assets/cadence/Cadence%20Img%203.jpg" alt="Bhoomi Pooja"></div>
+                        <div class="tl-card-body"><div class="tl-card-title">Bhoomi Pooja — A New Beginning</div></div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Content Panel -->
+        <div class="cp-wrap" style="margin-top:0;">
+            <button class="cp-arrow cp-arrow-prev" id="cp-prev" aria-label="Previous">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+            </button>
+            <button class="cp-arrow cp-arrow-next" id="cp-next" aria-label="Next">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+            <div class="cp-card" id="cp-card">
+                <div class="cp-meta" id="cp-meta"></div>
+                <h2 class="cp-title" id="cp-title"></h2>
+                <p class="cp-text" id="cp-text"></p>
+                <div class="cp-footer">
+                    <a class="cp-cta" id="cp-cta" href="#">
+                        View Update
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                    </a>
+                    <div class="cp-counter"><strong id="cp-num">1</strong> / <span id="cp-total">6</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <img src="assets/goodearth-logo.png" alt="GoodEarth" class="footer-logo-img">
+                    <p class="footer-tagline">Cultivating conscious communities since 1996. Regenerative living rooted in nature, craft, and community.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Projects</h4>
+                    <ul>
+                        <li><a href="malhar-motif-updates.html">Malhar Motif</a></li>
+                        <li><a href="malhar-octave-updates.html">Malhar Octave</a></li>
+                        <li><a href="malhar-ochre-updates.html">Malhar Ochre</a></li>
+                        <li><a href="malhar-cadence-updates.html">Malhar Cadence</a></li>
+                        <li><a href="saarang-update.html">GoodEarth Saarang</a></li>
+                        <li><a href="goodearth-umang.html">GoodEarth Umang</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Connect</h4>
+                    <ul>
+                        <li><a href="https://goodearth.org.in">goodearth.org.in</a></li>
+                        <li><a href="https://goodearth.org.in/contact/">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 GoodEarth. All Rights Reserved.</p>
+                <p>Kambipura, Karnataka, India</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+    (() => {
+        const updates = [
+            {
+                meta:  '13 April 2026',
+                title: 'Malhar Cadence — March 2026 Update',
+                text:  'Structural and internal finishing works continue to advance steadily across all blocks of Malhar Cadence. Concrete works are nearing completion and MEP installations are progressing in finished structural areas. The community is taking clear shape with landscaping and terrace garden works commencing on schedule.',
+                link:  'cadence/cadence-march-2026.html',
+            },
+            {
+                meta:  '5 January 2026',
+                title: 'December 2025 — Structural Progress Update',
+                text:  'Significant structural milestones mark the end of 2025 for Malhar Cadence. Brickwork is progressing across the upper floors and internal rough-in works for plumbing and electrical are underway in the completed lower floors. The building is taking its full form above the podium level.',
+                link:  'cadence/cadence-december-2025.html',
+            },
+            {
+                meta:  '28 October 2025',
+                title: 'Malhar Cadence — October 2025 Update',
+                text:  'The mid-construction update shows Cadence\'s structure rising steadily. Column casting is complete on multiple floors across the blocks, and the building is gaining its full height above the podium. Brickwork and MEP rough-in works are progressing in parallel with structural works.',
+                link:  'cadence/cadence-october-2025.html',
+            },
+            {
+                meta:  '13 August 2025',
+                title: 'Malhar Cadence — August 2025 Update',
+                text:  'Ground floor slab and first-floor column works are progressing well across all blocks of Malhar Cadence. The structural framework is advancing at pace and the project remains on schedule. Foundation and podium works are substantially complete, with the superstructure gaining momentum.',
+                link:  'cadence/cadence-august-2025.html',
+            },
+            {
+                meta:  '13 May 2025',
+                title: 'Construction Commences at Malhar Cadence',
+                text:  'Following the ground-breaking ceremony, construction has commenced at Malhar Cadence. Foundation works are underway and the site is being prepared for the structural phase across all 145 apartment units. The community, built around sky and terrace gardens, is well and truly under way.',
+                link:  'cadence/cadence-june-2025.html',
+            },
+            {
+                meta:  '23 November 2024',
+                title: 'Bhoomi Pooja — A New Beginning for Cadence',
+                text:  'The ground-breaking ceremony for Malhar Cadence marks the commencement of GoodEarth\'s 10th community — 145 low-rise apartments built around the theme of sky and terrace gardens. The Bhoomi Pooja was a joyous occasion attended by future residents and the GoodEarth family at Malhar Eco-Village.',
+                link:  'cadence/cadence-bhoomi-pooja.html',
+            },
+        ];
+
+        const items   = document.querySelectorAll('.tl-item');
+        const track   = document.getElementById('tl-track');
+        const card    = document.getElementById('cp-card');
+        const metaEl  = document.getElementById('cp-meta');
+        const titleEl = document.getElementById('cp-title');
+        const textEl  = document.getElementById('cp-text');
+        const numEl   = document.getElementById('cp-num');
+        const totalEl = document.getElementById('cp-total');
+        const ctaEl   = document.getElementById('cp-cta');
+        const btnPrev = document.getElementById('cp-prev');
+        const btnNext = document.getElementById('cp-next');
+
+        let current = 0;
+        totalEl.textContent = updates.length;
+
+        function select(idx, doScroll = true) {
+            if (idx < 0 || idx >= updates.length) return;
+            current = idx;
+            items.forEach(el => el.classList.remove('active'));
+            items[current].classList.add('active');
+            if (doScroll) {
+                const el = items[current];
+                track.scrollTo({ left: el.offsetLeft - track.offsetWidth / 2 + el.offsetWidth / 2, behavior: 'smooth' });
+            }
+            card.classList.add('fading');
+            setTimeout(() => {
+                const u = updates[current];
+                metaEl.textContent  = u.meta;
+                titleEl.textContent = u.title;
+                textEl.textContent  = u.text;
+                numEl.textContent   = current + 1;
+                ctaEl.href = u.link;
+                card.classList.remove('fading');
+            }, 250);
+            btnPrev.disabled = current === 0;
+            btnNext.disabled = current === updates.length - 1;
+        }
+
+        items.forEach(el => el.addEventListener('click', () => select(+el.dataset.index)));
+        btnPrev.addEventListener('click', () => select(current - 1));
+        btnNext.addEventListener('click', () => select(current + 1));
+        document.addEventListener('keydown', e => {
+            if (e.key === 'ArrowLeft')  select(current - 1);
+            if (e.key === 'ArrowRight') select(current + 1);
+        });
+
+        const hdr = document.getElementById('mainHeader');
+        window.addEventListener('scroll', () => hdr.classList.toggle('scrolled', window.scrollY > 60), { passive: true });
+
+        const hamburger = document.getElementById('hamburgerMenu');
+        const mobileNav = document.getElementById('mobileNav');
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            mobileNav.classList.toggle('active');
+            document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : '';
+        });
+        document.getElementById('mobileProjectsToggle').addEventListener('click', e => {
+            e.preventDefault();
+            document.getElementById('mobileProjectsSub').classList.toggle('open');
+        });
+        document.querySelectorAll('.mobile-link:not(#mobileProjectsToggle)').forEach(l => l.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            mobileNav.classList.remove('active');
+            document.body.style.overflow = '';
+        }));
+
+        const observer = new IntersectionObserver(entries => entries.forEach(e => {
+            if (e.isIntersecting) { e.target.classList.add('is-visible'); observer.unobserve(e.target); }
+        }), { threshold: 0.1 });
+        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+        select(0, false);
+    })();
+    </script>
+</body>
+</html>

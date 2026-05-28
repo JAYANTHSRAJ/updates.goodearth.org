@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Malhar Cadence — Updates October 2025 | Malhar Cadence</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ge-blue:#0053a4; --ge-olive:#666b4a; --ge-maroon:#874545;
+            --ge-gold:#d69100; --ge-blue-dark:#003d7a;
+            --ge-cadence:#7a5c28; --ge-cadence-light:#9a7840;
+            --ge-ivory:#f5f1eb; --ge-ivory-deep:#ece8e0;
+            --ge-slate:#3a3a3a; --ge-slate-light:#6a6a6a; --white:#ffffff;
+            --font-heading:'Manrope',sans-serif; --font-body:'Karla',sans-serif;
+            --radius-xl:28px; --radius-lg:20px; --radius-pill:50px;
+        }
+        *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+        html{scroll-behavior:smooth;}
+        body{font-family:var(--font-body);color:var(--ge-slate);background-color:var(--ge-ivory);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+        h1,h2,h3,h4,h5,h6{font-family:var(--font-heading);color:var(--ge-blue);}
+        a{text-decoration:none;color:inherit;}
+        img{max-width:100%;display:block;}
+        .fade-up{opacity:0;transform:translateY(28px);transition:opacity 0.7s ease-out,transform 0.7s cubic-bezier(0.16,1,0.3,1);}
+        .fade-up.is-visible{opacity:1;transform:translateY(0);}
+        .delay-1{transition-delay:.1s}.delay-2{transition-delay:.2s}.delay-3{transition-delay:.3s}
+        /* Buttons */
+        .btn-fill{position:relative;display:inline-flex;align-items:center;justify-content:center;padding:13px 26px;border-radius:var(--radius-pill);font-family:var(--font-heading);font-size:.88rem;font-weight:600;cursor:pointer;overflow:hidden;border:none;outline:none;transition:color .5s ease,box-shadow .3s ease;box-shadow:0 4px 15px rgba(0,0,0,.08);text-decoration:none;}
+        .btn-fill:hover{box-shadow:0 10px 28px rgba(0,0,0,.15);}
+        .btn-text{position:relative;z-index:2;padding-right:24px;}
+        .btn-dot{position:absolute;right:8px;top:50%;transform:translateY(-50%);width:28px;height:28px;border-radius:50%;z-index:1;transition:transform .6s cubic-bezier(.4,0,.2,1);}
+        .btn-fill:hover .btn-dot{transform:translateY(-50%) scale(40);}
+        .btn-gold{background:var(--ge-gold);color:var(--white);}.btn-gold .btn-dot{background:var(--ge-ivory);}.btn-gold:hover{color:var(--ge-slate);}
+        .btn-blue{background:var(--ge-blue);color:var(--white);}.btn-blue .btn-dot{background:var(--ge-gold);}.btn-blue:hover{color:var(--ge-blue);}
+        /* Header */
+        header{position:fixed;top:0;left:0;width:100%;padding:1.4rem 5%;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;z-index:1000;transition:background-color .4s ease,padding .4s ease,box-shadow .4s ease;}
+        header.scrolled{background-color:rgba(0,61,122,.97);backdrop-filter:blur(12px);padding:.9rem 5%;box-shadow:0 4px 24px rgba(0,0,0,.12);}
+        .logo-wrap{display:flex;align-items:center;z-index:1001;position:relative;}
+        .nav-pill{background:rgba(255,255,255,.12);backdrop-filter:blur(14px);border-radius:var(--radius-pill);padding:6px;display:flex;align-items:center;border:1px solid rgba(255,255,255,.15);}
+        .nav-pill ul{display:flex;list-style:none;gap:4px;}
+        .nav-pill a{color:rgba(255,255,255,.88);font-size:.84rem;font-weight:500;padding:8px 18px;border-radius:var(--radius-pill);transition:all .3s ease;display:inline-block;white-space:nowrap;}
+        .nav-pill a:hover{background:rgba(255,255,255,.14);color:#fff;}
+        .nav-pill li.active a{background:#fff;color:var(--ge-blue);}
+        .nav-dropdown{position:relative;}.nav-dropdown>a{display:flex;align-items:center;gap:5px;}
+        .nav-dropdown>a::after{content:'';display:inline-block;width:7px;height:7px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(45deg) translateY(-2px);transition:transform .3s ease;}
+        .nav-dropdown:hover>a::after{transform:rotate(-135deg) translateY(-2px);}
+        .dropdown-menu{position:absolute;top:calc(100% + 10px);left:50%;transform:translateX(-50%) translateY(8px);background:var(--white);border-radius:18px;padding:8px;min-width:210px;box-shadow:0 16px 40px rgba(0,53,164,.15);opacity:0;visibility:hidden;transition:all .3s cubic-bezier(.16,1,.3,1);border:1px solid rgba(0,53,164,.08);}
+        .nav-dropdown:hover .dropdown-menu{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0);}
+        .dropdown-menu a{display:block;color:var(--ge-slate)!important;font-size:.85rem;font-weight:500;padding:9px 16px;border-radius:12px;transition:background .2s ease;background:transparent!important;}
+        .dropdown-menu a:hover{background:var(--ge-ivory)!important;color:var(--ge-blue)!important;}
+        .dropdown-menu a.current{background:var(--ge-ivory)!important;color:var(--ge-blue)!important;font-weight:700;}
+        .header-right{display:flex;justify-content:flex-end;align-items:center;gap:12px;z-index:1001;position:relative;}
+        .hamburger{width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.2);display:none;flex-direction:column;justify-content:center;align-items:center;gap:5px;cursor:pointer;transition:all .3s ease;outline:none;}
+        .hamburger span{width:18px;height:2px;background:#fff;transition:all .3s ease;border-radius:2px;}
+        /* Mobile menu */
+        .mobile-menu{position:fixed;top:0;left:0;width:100%;height:100%;background:var(--ge-blue);z-index:999;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding:10% 8%;transform:translateX(-100%);transition:transform .5s cubic-bezier(.16,1,.3,1);}
+        .mobile-menu.open{transform:translateX(0);}
+        .mobile-menu ul{list-style:none;width:100%;}
+        .mobile-menu li{margin-bottom:4px;}
+        .mobile-link{display:block;color:rgba(255,255,255,.75);font-family:var(--font-heading);font-size:1.2rem;font-weight:500;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.08);transition:color .3s;}
+        .mobile-link:hover{color:#fff;}
+        .mobile-sub{display:none;padding:8px 0 8px 20px;}.mobile-sub.open{display:block;}
+        .mobile-sub .mobile-link{font-size:1rem;color:rgba(255,255,255,.6);}
+        /* Hero */
+        .hero{position:relative;height:520px;display:flex;align-items:flex-end;overflow:hidden;}
+        .hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+        .hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,30,80,.82) 0%,rgba(0,30,80,.35) 60%,transparent 100%);}
+        .hero-content{position:relative;z-index:2;padding-bottom:56px;width:100%;}
+        .hero-breadcrumb{display:flex;align-items:center;gap:8px;margin-bottom:14px;font-size:.78rem;font-family:var(--font-heading);font-weight:600;letter-spacing:.5px;color:rgba(255,255,255,.7);}
+        .hero-breadcrumb a{color:rgba(255,255,255,.7);transition:color .2s;}.hero-breadcrumb a:hover{color:#fff;}
+        .hero-breadcrumb .sep{color:rgba(255,255,255,.4);}
+        .hero-content h1{font-size:2.6rem;font-weight:700;color:#fff;line-height:1.2;max-width:720px;margin-bottom:14px;}
+        .hero-content h1 strong{font-weight:800;}
+        .title-divider{color:var(--ge-gold);margin:0 10px;}
+        .article-date{font-family:var(--font-heading);font-size:.82rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--ge-gold);}
+        /* Layout */
+        .site-container{max-width:1200px;margin:0 auto;padding-left:5%;padding-right:5%;}
+        .content-layout{display:grid;grid-template-columns:1fr 380px;gap:56px;padding-top:60px;padding-bottom:80px;}
+        /* Article */
+        .article-body{min-width:0;}
+        .article-intro{font-size:1.15rem;line-height:1.75;color:var(--ge-slate);font-weight:400;border-left:3px solid var(--ge-gold);padding-left:22px;margin-bottom:36px;}
+        .article-body h2{font-size:1.5rem;font-weight:700;color:var(--ge-blue);margin:36px 0 16px;}
+        .article-body p{font-size:.97rem;color:var(--ge-slate-light);line-height:1.75;font-weight:300;margin-bottom:20px;}
+        /* Highlights */
+        .highlights-wrap{background:var(--white);border-radius:var(--radius-xl);padding:8px 28px;margin:28px 0;box-shadow:0 4px 20px rgba(0,53,164,.06);}
+        .highlights-list{list-style:none;padding:0;}
+        .highlights-list li{display:flex;align-items:flex-start;gap:14px;padding:16px 0;border-bottom:1px solid var(--ge-ivory-deep);}
+        .highlights-list li:last-child{border-bottom:none;}
+        .highlight-dot{width:8px;height:8px;border-radius:50%;background:var(--ge-gold);flex-shrink:0;margin-top:7px;}
+        .highlights-list span{font-size:.92rem;color:var(--ge-slate);line-height:1.65;}
+        /* Section cards */
+        .section-card{background:var(--white);border-radius:var(--radius-xl);overflow:hidden;margin:32px 0;box-shadow:0 4px 20px rgba(0,53,164,.06);}
+        .section-card-header{display:flex;align-items:center;gap:16px;padding:24px 28px;}
+        .section-card-header .icon{width:40px;height:40px;border-radius:12px;background:var(--ge-ivory-deep);display:flex;align-items:center;justify-content:center;color:var(--ge-blue);flex-shrink:0;}
+        .section-card-header h3{font-size:1rem;font-weight:700;color:var(--ge-blue);margin-bottom:3px;}
+        .section-card-header p{font-size:.82rem;color:var(--ge-slate-light);font-weight:300;}
+        .section-card-body{padding:0 28px 28px;}
+        /* Team quote */
+        .team-quote{background:var(--ge-blue);border-radius:var(--radius-xl);padding:40px 44px;margin:32px 0;color:#fff;}
+        .team-quote h3{font-size:1rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--ge-gold);margin-bottom:14px;}
+        .team-quote p{font-size:1.05rem;line-height:1.75;color:rgba(255,255,255,.85);font-style:italic;font-weight:300;}
+        /* What's next */
+        .whats-next{background:var(--ge-ivory-deep);border-radius:var(--radius-xl);padding:32px 36px;margin:32px 0;display:flex;gap:20px;align-items:flex-start;}
+        .next-icon{width:36px;height:36px;border-radius:50%;background:var(--ge-gold);display:flex;align-items:center;justify-content:center;color:#fff;flex-shrink:0;align-self:flex-start;margin-top:2px;}
+        .whats-next h3{font-size:1rem;font-weight:700;color:var(--ge-blue);margin:0 0 8px;}
+        .whats-next p{font-size:.92rem;color:var(--ge-slate-light);line-height:1.7;font-weight:300;margin:0;}
+        /* Gallery */
+        .gallery-section{margin:40px 0 0;}
+        .gallery-section .vertical-line{width:3px;height:36px;background:var(--ge-gold);border-radius:2px;margin-bottom:14px;}
+        .gallery-section h2{margin-bottom:24px;}
+        .gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+        .gallery-item{border-radius:var(--radius-lg);overflow:hidden;aspect-ratio:4/3;cursor:zoom-in;}
+        .gallery-item.wide{grid-column:span 2;aspect-ratio:16/9;}
+        .gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease;}
+        .gallery-item:hover img{transform:scale(1.04);}
+        /* Sidebar */
+        .sidebar{position:sticky;top:100px;display:flex;flex-direction:column;gap:24px;}
+        .sidebar-card{background:var(--white);border-radius:var(--radius-xl);padding:28px;box-shadow:0 4px 20px rgba(0,53,164,.06);}
+        .sidebar-card h4{font-family:var(--font-heading);font-size:.72rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--ge-gold);margin-bottom:18px;}
+        .recent-updates{display:flex;flex-direction:column;gap:0;}
+        .recent-item{display:flex;gap:14px;padding:14px 0;border-bottom:1px solid var(--ge-ivory-deep);align-items:flex-start;transition:opacity .3s;}
+        .recent-item:last-child{border-bottom:none;padding-bottom:0;}
+        .recent-item:hover{opacity:.75;}
+        .recent-thumb{width:56px;height:48px;border-radius:10px;overflow:hidden;flex-shrink:0;}
+        .recent-thumb img{width:100%;height:100%;object-fit:cover;}
+        .recent-info{flex:1;min-width:0;}
+        .recent-date{font-family:var(--font-heading);font-size:.65rem;font-weight:600;letter-spacing:.8px;text-transform:uppercase;color:var(--ge-slate-light);margin-bottom:4px;}
+        .recent-title{font-family:var(--font-heading);font-size:.82rem;font-weight:600;color:var(--ge-blue);line-height:1.3;}
+        .recent-item.active .recent-title{color:var(--ge-gold);}
+        .sidebar-blue{background:var(--ge-blue);}
+        .sidebar-blue h4{color:var(--ge-gold);}
+        .sidebar-blue p{font-size:.88rem;color:rgba(255,255,255,.68);line-height:1.65;font-weight:300;margin-bottom:20px;}
+        .project-nav{display:flex;gap:10px;flex-wrap:wrap;}
+        .project-nav a{font-size:.78rem;font-family:var(--font-heading);font-weight:600;color:rgba(255,255,255,.65);background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);padding:5px 12px;border-radius:var(--radius-pill);transition:all .3s;white-space:nowrap;}
+        .project-nav a:hover,.project-nav a.active{background:rgba(255,255,255,.18);color:var(--white);}
+        /* Footer */
+        footer{background-color:var(--ge-blue);color:rgba(255,255,255,.75);padding:72px 5% 36px;border-radius:var(--radius-xl) var(--radius-xl) 0 0;margin-top:40px;}
+        .footer-inner{max-width:1200px;margin:0 auto;}
+        .footer-top{display:flex;justify-content:space-between;align-items:flex-start;gap:40px;flex-wrap:wrap;margin-bottom:56px;}
+        .footer-brand{max-width:300px;}
+        .footer-logo-img{height:38px;width:auto;object-fit:contain;filter:brightness(0) invert(1);margin-bottom:14px;display:block;}
+        .footer-tagline{font-size:.9rem;color:rgba(255,255,255,.5);line-height:1.6;font-weight:300;}
+        .footer-links h4{font-family:var(--font-heading);font-size:.78rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--ge-gold);margin-bottom:18px;}
+        .footer-links ul{list-style:none;}
+        .footer-links li{margin-bottom:10px;}
+        .footer-links a{font-size:.92rem;color:rgba(255,255,255,.65);transition:color .3s;}
+        .footer-links a:hover{color:var(--white);}
+        .footer-bottom{padding-top:28px;border-top:1px solid rgba(255,255,255,.1);display:flex;justify-content:space-between;font-size:.82rem;color:rgba(255,255,255,.4);flex-wrap:wrap;gap:12px;}
+        /* Responsive */
+        @media(max-width:960px){
+            .site-container{padding-left:32px!important;padding-right:32px!important;}
+            .content-layout{grid-template-columns:1fr;gap:40px;padding-top:48px;padding-bottom:64px;}
+            .sidebar{position:static;}
+            .gallery-grid{grid-template-columns:repeat(2,1fr);}
+            .gallery-item.wide{grid-column:span 1;aspect-ratio:1/1;}
+        }
+        @media(max-width:900px){
+            header{padding:1rem 5%;grid-template-columns:1fr auto;}
+            .nav-pill{display:none;}.header-right .btn-fill{display:none;}
+            .hamburger{display:flex;}
+            .footer-top{flex-direction:column;gap:40px;}
+            .hero{height:auto;min-height:440px;padding-top:80px;}
+            .hero-content{padding-bottom:56px;}
+        }
+        @media(max-width:600px){
+            .site-container{padding-left:24px!important;padding-right:24px!important;}
+            .gallery-grid{grid-template-columns:1fr;}
+            .gallery-item.wide{aspect-ratio:16/9;}
+            .hero-content h1{font-size:1.9rem;}
+            .team-quote{padding:32px 24px;}
+            .whats-next{padding:24px 20px;}
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="mainHeader">
+        <a href="../index.html" class="logo-wrap">
+            <img src="../assets/goodearth-logo.png" alt="GoodEarth" style="height:36px;object-fit:contain;filter:brightness(0) invert(1);">
+        </a>
+        <nav class="nav-pill">
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li class="nav-dropdown active">
+                    <a href="#">Projects</a>
+                    <div class="dropdown-menu">
+                        <a href="../malhar-motif-updates.html">Malhar Motif</a>
+                        <a href="../malhar-octave-updates.html">Malhar Octave</a>
+                        <a href="../malhar-ochre-updates.html">Malhar Ochre</a>
+                        <a href="../malhar-cadence-updates.html" class="current">Malhar Cadence</a>
+                        <a href="../saarang-update.html">GoodEarth Saarang</a>
+                        <a href="../goodearth-umang.html">GoodEarth Umang</a>
+                    </div>
+                </li>
+                <li><a href="https://goodearth.org.in/contact/">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="header-right">
+            <a href="https://goodearth.org.in/contact/" class="btn-fill btn-gold" style="padding:10px 20px;font-size:.82rem;">
+                <span class="btn-text">Contact Us</span>
+                <span class="btn-dot" style="width:24px;height:24px;right:6px;"></span>
+            </a>
+            <button class="hamburger" id="hamburgerMenu" aria-label="Open menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileNav">
+        <ul>
+            <li><a href="../index.html" class="mobile-link">Home</a></li>
+            <li>
+                <a href="#" class="mobile-link" id="mobileProjectsToggle">Projects ▾</a>
+                <div class="mobile-sub" id="mobileProjectsSub">
+                    <a href="../malhar-motif-updates.html" class="mobile-link">Malhar Motif</a>
+                    <a href="../malhar-octave-updates.html" class="mobile-link">Malhar Octave</a>
+                    <a href="../malhar-ochre-updates.html" class="mobile-link">Malhar Ochre</a>
+                    <a href="../malhar-cadence-updates.html" class="mobile-link">Malhar Cadence</a>
+                    <a href="../saarang-update.html" class="mobile-link">GoodEarth Saarang</a>
+                    <a href="../goodearth-umang.html" class="mobile-link">GoodEarth Umang</a>
+                </div>
+            </li>
+            <li><a href="https://goodearth.org.in/contact/" class="mobile-link">Contact Us</a></li>
+        </ul>
+    </div>
+
+    <!-- Hero -->
+    <section class="hero">
+        <img class="hero-img" src="../assets/cadence/69dcb1a11933473e3b7728c9_cadence hero 1.webp" alt="Malhar Cadence">
+        <div class="hero-overlay"></div>
+        <div class="hero-content site-container" style="max-width:1200px;padding:0 5% 56px;">
+            <div class="hero-breadcrumb">
+                <a href="../index.html">Project Updates</a>
+                <span class="sep">/</span>
+                <a href="../malhar-cadence-updates.html">Malhar Cadence</a>
+            </div>
+            <h1>Malhar Cadence — Updates October 2025</h1>
+            <div class="article-date">October 28, 2025</div>
+        </div>
+    </section>
+
+    <!-- Main content -->
+    <div class="site-container">
+        <div class="content-layout">
+
+            <!-- Article -->
+            <article class="article-body">
+
+                <p class="article-intro fade-up">The Malhar Cadence project is gaining momentum. Excavation and levelling for the eastern blocks (E to J) is now complete, and foundation work has officially commenced — a significant milestone for the project.</p>
+
+                <h2 class="fade-up">Construction Progress</h2>
+                <p class="fade-up delay-1">The Excavation and Levelling work for Blocks E to J has been completed, and the PCC (Plain Cement Concrete) work for the foundation has begun in these blocks. On the western side, the outer compound wall is near completion — a major visual milestone for the project.</p>
+                <div class="highlights-wrap fade-up delay-1">
+                    <ul class="highlights-list">
+                        <li>
+                            <span class="highlight-dot"></span>
+                            <span><strong>Blocks E–J:</strong> Excavation and levelling completed; PCC foundation work commenced.</span>
+                        </li>
+                        <li>
+                            <span class="highlight-dot"></span>
+                            <span><strong>Outer Compound Wall:</strong> Almost complete on the western side.</span>
+                        </li>
+                        <li>
+                            <span class="highlight-dot"></span>
+                            <span>Site development and coordination progressing smoothly across all active work zones.</span>
+                        </li>
+                        <li>
+                            <span class="highlight-dot"></span>
+                            <span>Project timeline on track with the construction schedule.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="team-quote fade-up">
+                    <h3>A Quick Word from our Projects Team</h3>
+                    <p>"I'm pleased to highlight the significant progress we've made so far. With foundation work now underway in Blocks E to J, we are entering an exciting and pivotal phase for Malhar Cadence."</p>
+                </div>
+
+                <div class="whats-next fade-up">
+                    <div class="next-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                    </div>
+                    <div>
+                        <h3>What&#x2019;s Next</h3>
+                        <p>Excavation and levelling work will continue for the remaining blocks. Partial foundation work will begin for Blocks E to J in the coming month.</p>
+                    </div>
+                </div>
+                <!-- Gallery -->
+                <div class="gallery-section fade-up">
+                    <div class="vertical-line"></div>
+                    <h2>Gallery</h2>
+                    <div class="gallery-grid">
+                        <div class="gallery-item wide" data-index="0"><img src="../assets/cadence/68ff04cb173672cc5b38c60d_cadence-oct-update.jpg" alt="Malhar Cadence construction photo 1"></div>
+                        <div class="gallery-item" data-index="1"><img src="../assets/cadence/68f9d3e584d7ebc8add02af0_cadence-oct-update-2.jpg" alt="Malhar Cadence construction photo 2"></div>
+                        <div class="gallery-item" data-index="2"><img src="../assets/cadence/68f9d3ec4749d70334790104_cadence-oct-update-3.jpg" alt="Malhar Cadence construction photo 3"></div>
+                        <div class="gallery-item" data-index="3"><img src="../assets/cadence/68f9d3f180b6a3c1d5087451_cadence-oct-update-4.jpg" alt="Malhar Cadence construction photo 4"></div>
+                        <div class="gallery-item" data-index="4"><img src="../assets/cadence/68f9d3f7579afbd599edce87_cadence-oct-update-5.jpg" alt="Malhar Cadence construction photo 5"></div>
+                    </div>
+                </div>
+
+                <!-- Back link -->
+                <div style="margin-top:48px;padding-top:32px;border-top:1px solid var(--ge-ivory-deep);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;">
+                    <a href="../malhar-cadence-updates.html" class="btn-fill btn-blue">
+                        <span class="btn-text">&#x2190; All Cadence Updates</span>
+                        <span class="btn-dot" style="width:24px;height:24px;right:6px;"></span>
+                    </a>
+                    <a href="../index.html" style="font-family:var(--font-heading);font-size:.82rem;font-weight:600;color:var(--ge-slate-light);letter-spacing:.5px;">View All Projects &#x2192;</a>
+                </div>
+
+            </article>
+
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <div class="sidebar-card">
+                    <h4>Cadence Updates</h4>
+                    <div class="recent-updates">
+                        <a href="cadence-march-2026.html" class="recent-item">
+                            <div class="recent-thumb"><img src="../assets/cadence/69dcb1afeef0807533f933e6_Cadence2.webp" alt=""></div>
+                            <div class="recent-info">
+                                <div class="recent-date">Mar 2026</div>
+                                <div class="recent-title">Malhar Cadence — Updates March 2026</div>
+                            </div>
+                        </a>
+                        <a href="cadence-december-2025.html" class="recent-item">
+                            <div class="recent-thumb"><img src="../assets/cadence/695ba45cda51fb349f1058da_Cadence_-_2025-12-16__3_.JPG" alt=""></div>
+                            <div class="recent-info">
+                                <div class="recent-date">Dec 2025</div>
+                                <div class="recent-title">Cadence Update December 2025</div>
+                            </div>
+                        </a>
+                        <a href="cadence-october-2025.html" class="recent-item active">
+                            <div class="recent-thumb"><img src="../assets/cadence/68ff04cb173672cc5b38c60d_cadence-oct-update.jpg" alt=""></div>
+                            <div class="recent-info">
+                                <div class="recent-date">Oct 2025</div>
+                                <div class="recent-title">Malhar Cadence — Updates October 2025</div>
+                            </div>
+                        </a>
+                        <a href="cadence-august-2025.html" class="recent-item">
+                            <div class="recent-thumb"><img src="../assets/cadence/68931d7e128ee2bc1ace4b61_Cadence - Aug25-1.webp" alt=""></div>
+                            <div class="recent-info">
+                                <div class="recent-date">Aug 2025</div>
+                                <div class="recent-title">Malhar Cadence — Updates August 2025</div>
+                            </div>
+                        </a>
+                        <a href="cadence-june-2025.html" class="recent-item">
+                            <div class="recent-thumb"><img src="../assets/cadence/681994890989d1a6711cceab_Cadence 01.jpg" alt=""></div>
+                            <div class="recent-info">
+                                <div class="recent-date">Jun 2025</div>
+                                <div class="recent-title">Malhar Cadence Updates — June 2025</div>
+                            </div>
+                        </a>
+                        <a href="cadence-bhoomi-pooja.html" class="recent-item">
+                            <div class="recent-thumb"><img src="../assets/cadence/681994890989d1a6711cceab_Cadence 01.jpg" alt=""></div>
+                            <div class="recent-info">
+                                <div class="recent-date">Apr 2025</div>
+                                <div class="recent-title">Malhar Cadence Ground Breaking Ceremony</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="sidebar-card sidebar-blue">
+                    <h4>About GoodEarth</h4>
+                    <p>At GoodEarth, we bring together like-minded people with a common vision of building a sustainable future — one community at a time.</p>
+                    <div class="project-nav">
+                        <a href="../malhar-motif-updates.html">Motif</a>
+                        <a href="../malhar-octave-updates.html">Octave</a>
+                        <a href="../malhar-ochre-updates.html">Ochre</a>
+                        <a href="../malhar-cadence-updates.html" class="active">Cadence</a>
+                        <a href="../saarang-update.html">Saarang</a>
+                        <a href="../goodearth-umang.html">Umang</a>
+                    </div>
+                </div>
+            </aside>
+
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <img src="../assets/goodearth-logo.png" alt="GoodEarth" class="footer-logo-img">
+                    <p class="footer-tagline">Cultivating conscious communities since 1996. Regenerative living rooted in nature, craft, and community.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Projects</h4>
+                    <ul>
+                        <li><a href="../malhar-motif-updates.html">Malhar Motif</a></li>
+                        <li><a href="../malhar-octave-updates.html">Malhar Octave</a></li>
+                        <li><a href="../malhar-ochre-updates.html">Malhar Ochre</a></li>
+                        <li><a href="../malhar-cadence-updates.html">Malhar Cadence</a></li>
+                        <li><a href="../saarang-update.html">GoodEarth Saarang</a></li>
+                        <li><a href="../goodearth-umang.html">GoodEarth Umang</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="https://goodearth.org.in">GoodEarth Website</a></li>
+                        <li><a href="https://goodearth.org.in/contact/">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>© 2026 GoodEarth Eco Future Pvt. Ltd. All rights reserved.</span>
+                <span>Building sustainable communities since 1996</span>
+            </div>
+        </div>
+    </footer>
+    <script>
+        // Header scroll
+        const hdr = document.getElementById('mainHeader');
+        window.addEventListener('scroll', () => hdr.classList.toggle('scrolled', window.scrollY > 60));
+        // Hamburger
+        const ham = document.getElementById('hamburgerMenu');
+        const mob = document.getElementById('mobileNav');
+        ham.addEventListener('click', () => mob.classList.toggle('open'));
+        // Mobile projects
+        const mpt = document.getElementById('mobileProjectsToggle');
+        const mps = document.getElementById('mobileProjectsSub');
+        if (mpt) mpt.addEventListener('click', e => { e.preventDefault(); mps.classList.toggle('open'); });
+        // Fade-up
+        const obs = new IntersectionObserver(entries => {
+            entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('is-visible'); });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+    </script>
+</body>
+</html>

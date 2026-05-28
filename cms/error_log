@@ -1,0 +1,59 @@
+[14-Apr-2026 15:08:53 UTC] PHP Warning:  The magic method DB::__wakeup() must have public visibility in /home/wymofyuzqf3j/public_html/updates2.goodearth.org.in/cms/includes/db.php on line 30
+[14-Apr-2026 15:08:53 UTC] PHP Fatal error:  Cannot redeclare get_current_user() in /home/wymofyuzqf3j/public_html/updates2.goodearth.org.in/cms/includes/auth.php on line 36
+[14-Apr-2026 15:08:57 UTC] PHP Fatal error:  Cannot redeclare get_current_user() in /home/wymofyuzqf3j/public_html/updates2.goodearth.org.in/cms/includes/auth.php on line 36
+[14-Apr-2026 15:09:00 UTC] PHP Fatal error:  Cannot redeclare get_current_user() in /home/wymofyuzqf3j/public_html/updates2.goodearth.org.in/cms/includes/auth.php on line 36
+[14-Apr-2026 15:13:06 UTC] DB connection failed: SQLSTATE[HY000] [1045] Access denied for user 'YOUR_DB_USER'@'localhost' (using password: YES)
+[14-Apr-2026 15:14:00 UTC] DB connection failed: SQLSTATE[HY000] [1045] Access denied for user 'YOUR_DB_USER'@'localhost' (using password: YES)
+[14-Apr-2026 15:16:00 UTC] PHP Warning:  The magic method DB::__wakeup() must have public visibility in /home/wymofyuzqf3j/public_html/updates2.goodearth.org.in/cms/includes/db.php on line 50
+[14-Apr-2026 15:18:22 UTC] DB connection failed: SQLSTATE[HY000] [1045] Access denied for user 'wymofyuzqf3j_updates'@'localhost' (using password: YES)
+[14-Apr-2026 15:20:42 UTC] DB connection failed: SQLSTATE[HY000] [1045] Access denied for user 'wymofyuzqf3j_updates'@'localhost' (using password: YES)
+[14-Apr-2026 15:20:50 UTC] DB connection failed: SQLSTATE[HY000] [1045] Access denied for user 'wymofyuzqf3j_updates'@'localhost' (using password: YES)
+[14-Apr-2026 15:21:10 UTC] DB connection failed: SQLSTATE[HY000] [1044] Access denied for user 'updates'@'localhost' to database 'wymofyuzqf3j_updates'
+[14-Apr-2026 15:21:12 UTC] DB connection failed: SQLSTATE[HY000] [1044] Access denied for user 'updates'@'localhost' to database 'wymofyuzqf3j_updates'
+[14-Apr-2026 15:22:18 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'updates.users' doesn't exist in /home/wymofyuzqf3j/public_html/updates2.goodearth.org.in/cms/login.php:25
+Stack trace:
+#0 /home/wymofyuzqf3j/public_html/updates2.goodearth.org.in/cms/login.php(25): PDO->prepare()
+#1 {main}
+  thrown in /home/wymofyuzqf3j/public_html/updates2.goodearth.org.in/cms/login.php on line 25
+[14-Apr-2026 15:22:21 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'updates.users' doesn't exist in /home/wymofyuzqf3j/public_html/updates2.goodearth.org.in/cms/login.php:25
+Stack trace:
+#0 /home/wymofyuzqf3j/public_html/updates2.goodearth.org.in/cms/login.php(25): PDO->prepare()
+#1 {main}
+  thrown in /home/wymofyuzqf3j/public_html/updates2.goodearth.org.in/cms/login.php on line 25
+[14-Apr-2026 15:22:26 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'updates.users' doesn't exist in /home/wymofyuzqf3j/public_html/updates2.goodearth.org.in/cms/login.php:25
+Stack trace:
+#0 /home/wymofyuzqf3j/public_html/updates2.goodearth.org.in/cms/login.php(25): PDO->prepare()
+#1 {main}
+  thrown in /home/wymofyuzqf3j/public_html/updates2.goodearth.org.in/cms/login.php on line 25
+[14-Apr-2026 15:23:01 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'updates.users' doesn't exist in /home/wymofyuzqf3j/public_html/updates2.goodearth.org.in/cms/login.php:25
+Stack trace:
+#0 /home/wymofyuzqf3j/public_html/updates2.goodearth.org.in/cms/login.php(25): PDO->prepare()
+#1 {main}
+  thrown in /home/wymofyuzqf3j/public_html/updates2.goodearth.org.in/cms/login.php on line 25
+[14-Apr-2026 15:23:04 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'updates.users' doesn't exist in /home/wymofyuzqf3j/public_html/updates2.goodearth.org.in/cms/login.php:25
+Stack trace:
+#0 /home/wymofyuzqf3j/public_html/updates2.goodearth.org.in/cms/login.php(25): PDO->prepare()
+#1 {main}
+  thrown in /home/wymofyuzqf3j/public_html/updates2.goodearth.org.in/cms/login.php on line 25
+[14-Apr-2026 15:23:17 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'updates.users' doesn't exist in /home/wymofyuzqf3j/public_html/updates2.goodearth.org.in/cms/login.php:25
+Stack trace:
+#0 /home/wymofyuzqf3j/public_html/updates2.goodearth.org.in/cms/login.php(25): PDO->prepare()
+#1 {main}
+  thrown in /home/wymofyuzqf3j/public_html/updates2.goodearth.org.in/cms/login.php on line 25
+[14-Apr-2026 15:25:59 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'updates.users' doesn't exist in /home/wymofyuzqf3j/public_html/updates2.goodearth.org.in/cms/login.php:25
+Stack trace:
+#0 /home/wymofyuzqf3j/public_html/updates2.goodearth.org.in/cms/login.php(25): PDO->prepare()
+#1 {main}
+  thrown in /home/wymofyuzqf3j/public_html/updates2.goodearth.org.in/cms/login.php on line 25
+[14-Apr-2026 15:26:08 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'updates.users' doesn't exist in /home/wymofyuzqf3j/public_html/updates2.goodearth.org.in/cms/login.php:25
+Stack trace:
+#0 /home/wymofyuzqf3j/public_html/updates2.goodearth.org.in/cms/login.php(25): PDO->prepare()
+#1 {main}
+  thrown in /home/wymofyuzqf3j/public_html/updates2.goodearth.org.in/cms/login.php on line 25
+[14-Apr-2026 15:29:57 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'updates.users' doesn't exist in /home/wymofyuzqf3j/public_html/updates2.goodearth.org.in/cms/login.php:25
+Stack trace:
+#0 /home/wymofyuzqf3j/public_html/updates2.goodearth.org.in/cms/login.php(25): PDO->prepare()
+#1 {main}
+  thrown in /home/wymofyuzqf3j/public_html/updates2.goodearth.org.in/cms/login.php on line 25
+[14-Apr-2026 15:46:16 UTC] DB connection failed: SQLSTATE[HY000] [1044] Access denied for user 'updates'@'localhost' to database 'wymofyuzqf3j_updatesupdates'
+[14-Apr-2026 16:06:19 UTC] PHP Warning:  The magic method DB::__wakeup() must have public visibility in /home/wymofyuzqf3j/public_html/updates2.goodearth.org.in/cms/includes/db.php on line 50

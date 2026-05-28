@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Glimpse Into Ongoing Construction Progress | Malhar Ochre</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ge-blue:        #0053a4;
+            --ge-olive:       #666b4a;
+            --ge-maroon:      #874545;
+            --ge-gold:        #d69100;
+            --ge-blue-dark:   #003d7a;
+            --ge-ochre:       #b8662a;
+            --ge-ochre-light: #c87c3a;
+            --ge-ivory:       #f5f1eb;
+            --ge-ivory-deep:  #ece8e0;
+            --ge-slate:       #3a3a3a;
+            --ge-slate-light: #6a6a6a;
+            --white:          #ffffff;
+            --font-heading:   'Manrope', sans-serif;
+            --font-body:      'Karla', sans-serif;
+            --radius-xl:      28px;
+            --radius-lg:      20px;
+            --radius-pill:    50px;
+        }
+
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: var(--font-body); color: var(--ge-slate); background-color: var(--ge-ivory); line-height: 1.6; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+        h1,h2,h3,h4,h5,h6 { font-family: var(--font-heading); color: var(--ge-blue); }
+        a { text-decoration: none; color: inherit; }
+        img { max-width: 100%; display: block; }
+
+        .fade-up { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease-out, transform 0.7s cubic-bezier(0.16,1,0.3,1); }
+        .fade-up.is-visible { opacity: 1; transform: translateY(0); }
+        .delay-1 { transition-delay: 0.1s; } .delay-2 { transition-delay: 0.2s; }
+        .delay-3 { transition-delay: 0.3s; } .delay-4 { transition-delay: 0.4s; }
+        .delay-5 { transition-delay: 0.5s; } .delay-6 { transition-delay: 0.6s; }
+
+        /* Buttons */
+        .btn-fill { position: relative; display: inline-flex; align-items: center; justify-content: center; padding: 13px 26px; border-radius: var(--radius-pill); font-family: var(--font-heading); font-size: 0.88rem; font-weight: 600; cursor: pointer; overflow: hidden; border: none; outline: none; transition: color 0.5s ease, box-shadow 0.3s ease; box-shadow: 0 4px 15px rgba(0,0,0,0.08); text-decoration: none; }
+        .btn-fill:hover { box-shadow: 0 10px 28px rgba(0,0,0,0.15); }
+        .btn-text { position: relative; z-index: 2; padding-right: 24px; }
+        .btn-dot { position: absolute; right: 8px; top: 50%; transform: translateY(-50%); width: 28px; height: 28px; border-radius: 50%; z-index: 1; transition: transform 0.6s cubic-bezier(0.4,0,0.2,1); }
+        .btn-fill:hover .btn-dot { transform: translateY(-50%) scale(40); }
+        .btn-gold { background: var(--ge-gold); color: var(--white); }
+        .btn-gold .btn-dot { background: var(--ge-ivory); }
+        .btn-gold:hover { color: var(--ge-slate); }
+        .btn-blue { background: var(--ge-blue); color: var(--white); }
+        .btn-blue .btn-dot { background: var(--ge-gold); }
+        .btn-blue:hover { color: var(--ge-blue); }
+        .btn-ivory { background: var(--ge-ivory); color: var(--ge-blue); }
+        .btn-ivory .btn-dot { background: var(--ge-blue); }
+        .btn-ivory:hover { color: var(--white); }
+
+        /* Header */
+        header { position: fixed; top: 0; left: 0; width: 100%; padding: 1.4rem 5%; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; z-index: 1000; transition: background-color 0.4s ease, padding 0.4s ease, box-shadow 0.4s ease; }
+        header.scrolled { background-color: rgba(0,61,122,0.97); backdrop-filter: blur(12px); padding: 0.9rem 5%; box-shadow: 0 4px 24px rgba(0,0,0,0.12); }
+        .logo-wrap { display: flex; align-items: center; z-index: 1001; position: relative; }
+        .nav-pill { background: rgba(255,255,255,0.12); backdrop-filter: blur(14px); border-radius: var(--radius-pill); padding: 6px; display: flex; align-items: center; border: 1px solid rgba(255,255,255,0.15); }
+        .nav-pill ul { display: flex; list-style: none; gap: 4px; }
+        .nav-pill a { color: rgba(255,255,255,0.88); font-size: 0.84rem; font-weight: 500; padding: 8px 18px; border-radius: var(--radius-pill); transition: all 0.3s ease; display: inline-block; white-space: nowrap; }
+        .nav-pill a:hover { background: rgba(255,255,255,0.14); color: #fff; }
+        .nav-pill li.active a { background: #fff; color: var(--ge-blue); }
+        .nav-dropdown { position: relative; }
+        .nav-dropdown > a { display: flex; align-items: center; gap: 5px; }
+        .nav-dropdown > a::after { content: ''; display: inline-block; width: 7px; height: 7px; border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor; transform: rotate(45deg) translateY(-2px); transition: transform 0.3s ease; }
+        .nav-dropdown:hover > a::after { transform: rotate(-135deg) translateY(-2px); }
+        .dropdown-menu { position: absolute; top: calc(100% + 10px); left: 50%; transform: translateX(-50%) translateY(8px); background: var(--white); border-radius: 18px; padding: 8px; min-width: 210px; box-shadow: 0 16px 40px rgba(0,53,164,0.15); opacity: 0; visibility: hidden; transition: all 0.3s cubic-bezier(0.16,1,0.3,1); border: 1px solid rgba(0,53,164,0.08); }
+        .nav-dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
+        .dropdown-menu a { display: block; color: var(--ge-slate) !important; font-size: 0.85rem; font-weight: 500; padding: 9px 16px; border-radius: 12px; transition: background 0.2s ease; background: transparent !important; }
+        .dropdown-menu a:hover { background: var(--ge-ivory) !important; color: var(--ge-blue) !important; }
+        .dropdown-menu a.current { background: var(--ge-ivory) !important; color: var(--ge-blue) !important; font-weight: 700; }
+        .header-right { display: flex; justify-content: flex-end; align-items: center; gap: 12px; z-index: 1001; position: relative; }
+        .hamburger { width: 44px; height: 44px; border-radius: 50%; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.2); display: none; flex-direction: column; justify-content: center; align-items: center; gap: 5px; cursor: pointer; transition: all 0.3s ease; outline: none; }
+        .hamburger span { width: 18px; height: 2px; background: #fff; transition: all 0.3s ease; border-radius: 2px; }
+        .hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .hamburger.active span:nth-child(2) { opacity: 0; }
+        .hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+        .mobile-menu { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: var(--ge-blue); z-index: 999; display: flex; flex-direction: column; justify-content: center; align-items: center; opacity: 0; visibility: hidden; transition: all 0.4s cubic-bezier(0.16,1,0.3,1); transform: translateY(-20px); }
+        .mobile-menu.active { opacity: 1; visibility: visible; transform: translateY(0); }
+        .mobile-menu ul { list-style: none; text-align: center; width: 100%; padding: 0 40px; }
+        .mobile-menu li { margin-bottom: 8px; }
+        .mobile-sub { display: none; margin-top: 8px; padding: 12px 0; }
+        .mobile-sub.open { display: block; }
+        .mobile-menu a { color: rgba(255,255,255,0.9); font-family: var(--font-heading); font-size: 1.8rem; font-weight: 400; transition: color 0.3s ease; padding: 8px 0; display: block; }
+        .mobile-menu a:hover { color: var(--ge-gold); }
+        .mobile-sub a { font-size: 1.1rem; color: rgba(255,255,255,0.65); padding: 5px 0; }
+
+        /* Hero */
+        .hero {
+            position: relative;
+            height: 65vh;
+            min-height: 440px;
+            overflow: hidden;
+            display: flex;
+            align-items: flex-end;
+            border-radius: 0 0 var(--radius-xl) var(--radius-xl);
+        }
+        .hero-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transform: scale(1.04); animation: slowZoom 18s ease-out forwards; }
+        @keyframes slowZoom { to { transform: scale(1); } }
+        .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,20,60,0.88) 0%, rgba(0,20,60,0.35) 55%, rgba(0,0,0,0.15) 100%); }
+        .hero-content { position: relative; z-index: 2; padding: 0 5% 56px; width: 100%; max-width: 1200px; margin: 0 auto; }
+        .hero-breadcrumb { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-heading); font-size: 0.72rem; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.55); margin-bottom: 18px; }
+        .hero-breadcrumb a { transition: color 0.3s; }
+        .hero-breadcrumb a:hover { color: var(--white); }
+        .hero-breadcrumb .sep { color: rgba(255,255,255,0.25); }
+        .hero-content h1 { font-size: clamp(1.9rem, 4vw, 3rem); font-weight: 600; color: var(--white); line-height: 1.2; max-width: 780px; margin-bottom: 16px; }
+        .article-date { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-heading); font-size: 0.72rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--ge-gold); white-space: nowrap; }
+        .article-date::before { content: ''; width: 20px; height: 1.5px; background: var(--ge-gold); display: inline-block; }
+        .hero-content h1 .title-divider { color: var(--ge-gold); font-weight: 300; margin: 0 6px; opacity: 0.8; }
+
+        /* Layout */
+        .site-container { max-width: 1200px; margin: 0 auto; padding: 0 5%; }
+        .content-layout { display: grid; grid-template-columns: 1fr 320px; gap: 52px; padding: 64px 0 80px; align-items: start; }
+        .vertical-line { width: 2px; height: 36px; background: var(--ge-gold); border-radius: 2px; margin-bottom: 16px; }
+
+        /* Article body */
+        .article-body { min-width: 0; }
+
+        .article-intro {
+            font-size: 1.1rem;
+            color: var(--ge-slate);
+            line-height: 1.8;
+            font-weight: 300;
+            font-style: italic;
+            border-left: 3px solid var(--ge-ochre);
+            padding-left: 20px;
+            margin-bottom: 36px;
+            color: var(--ge-slate-light);
+        }
+
+        .article-body p { font-size: 1rem; color: var(--ge-slate); line-height: 1.85; font-weight: 300; margin-bottom: 20px; }
+        .article-body h2 { font-size: 1.5rem; font-weight: 600; color: var(--ge-blue); margin: 44px 0 16px; }
+        .article-body h3 { font-size: 1.15rem; font-weight: 600; color: var(--ge-blue); margin: 28px 0 12px; }
+
+        /* Highlights list */
+        .highlights-wrap { background: var(--white); border-radius: 20px; box-shadow: 0 2px 16px rgba(0,53,164,0.06); border-left: 4px solid var(--ge-ochre); padding: 8px 24px; margin: 0 0 28px; }
+        .highlights-list { list-style: none; margin: 0; display: flex; flex-direction: column; }
+        .highlights-list li { display: flex; align-items: flex-start; gap: 14px; padding: 14px 0; border-bottom: 1px solid rgba(0,53,164,0.06); }
+        .highlights-list li:last-child { border-bottom: none; }
+        .highlight-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--ge-ochre); flex-shrink: 0; margin-top: 7px; }
+        .highlights-list li span { font-size: 0.95rem; color: var(--ge-slate); line-height: 1.65; font-weight: 300; }
+
+        /* Section card (drone, 360, team) */
+        .section-card { border-radius: var(--radius-xl); overflow: hidden; margin: 36px 0; }
+        .section-card-header { background: var(--ge-blue); padding: 20px 28px; display: flex; align-items: center; gap: 14px; }
+        .section-card-header .icon { width: 36px; height: 36px; border-radius: 10px; background: rgba(255,255,255,0.12); display: flex; align-items: center; justify-content: center; color: var(--ge-gold); flex-shrink: 0; }
+        .section-card-header h3 { font-size: 1rem; font-weight: 600; color: var(--white); margin: 0; }
+        .section-card-header p { font-size: 0.82rem; color: rgba(255,255,255,0.6); margin: 0; font-weight: 300; }
+        .section-card-body { background: var(--white); padding: 28px; }
+        .section-card-body p { font-size: 0.95rem; color: var(--ge-slate-light); line-height: 1.7; font-weight: 300; margin: 0; }
+
+        /* Drone view image */
+        .drone-img-wrap { border-radius: var(--radius-lg); overflow: hidden; margin: 16px 0 0; position: relative; }
+        .drone-img-wrap img { width: 100%; height: 320px; object-fit: cover; }
+        .drone-img-wrap .drone-label { position: absolute; bottom: 16px; left: 16px; background: rgba(0,30,70,0.75); backdrop-filter: blur(8px); color: rgba(255,255,255,0.85); font-family: var(--font-heading); font-size: 0.72rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; padding: 5px 14px; border-radius: var(--radius-pill); }
+
+        /* 360 view placeholder */
+        .view-360-wrap { border-radius: var(--radius-lg); overflow: hidden; background: linear-gradient(135deg, var(--ge-blue-dark), var(--ge-blue)); height: 240px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; margin-top: 16px; }
+        .view-360-icon { width: 56px; height: 56px; border-radius: 50%; background: rgba(255,255,255,0.1); border: 1.5px solid rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; color: var(--ge-gold); }
+        .view-360-wrap p { font-family: var(--font-heading); font-size: 0.85rem; font-weight: 500; color: rgba(255,255,255,0.7); text-align: center; }
+
+        /* Team quote */
+        .team-quote { background: var(--ge-ochre); border-radius: var(--radius-xl); padding: 36px 40px; margin: 36px 0; position: relative; overflow: hidden; }
+        .team-quote::before { content: '"'; position: absolute; top: -10px; right: 20px; font-family: Georgia, serif; font-size: 9rem; color: rgba(255,255,255,0.08); line-height: 1; pointer-events: none; }
+        .team-quote h3 { font-size: 0.72rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.65); margin-bottom: 14px; }
+        .team-quote p { font-size: 1rem; color: rgba(255,255,255,0.9); line-height: 1.75; font-weight: 300; font-style: italic; margin: 0; }
+
+        /* What's next */
+        .whats-next { background: var(--white); border-radius: var(--radius-xl); padding: 32px 36px; margin: 36px 0; border: 1px solid rgba(0,53,164,0.07); display: flex; gap: 20px; align-items: flex-start; }
+        .next-icon { width: 36px; height: 36px; border-radius: 10px; background: rgba(0,83,164,0.08); display: flex; align-items: center; justify-content: center; color: var(--ge-blue); flex-shrink: 0; align-self: flex-start; margin-top: 2px; }
+        .whats-next h3 { font-size: 0.72rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--ge-ochre); margin: 0 0 8px; }
+        .whats-next p { font-size: 0.95rem; color: var(--ge-slate); line-height: 1.7; font-weight: 300; margin: 0; }
+
+        /* Gallery */
+        .gallery-section { margin: 44px 0; }
+        .gallery-section h2 { font-size: 1.5rem; font-weight: 600; color: var(--ge-blue); margin-bottom: 20px; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+        .gallery-item { border-radius: 16px; overflow: hidden; aspect-ratio: 4/3; cursor: pointer; }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+        .gallery-item:hover img { transform: scale(1.06); }
+        .gallery-item.tall { grid-row: span 2; aspect-ratio: unset; }
+        .gallery-item.wide { grid-column: span 2; aspect-ratio: 16/7; }
+
+        /* Lightbox */
+        .lightbox { position: fixed; inset: 0; background: rgba(0,0,0,0.92); z-index: 2000; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease; padding: 20px; }
+        .lightbox.active { opacity: 1; visibility: visible; }
+        .lightbox img { max-width: 90vw; max-height: 88vh; object-fit: contain; border-radius: 12px; }
+        .lightbox-close { position: absolute; top: 20px; right: 20px; width: 44px; height: 44px; border-radius: 50%; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: white; font-size: 1.2rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.3s; }
+        .lightbox-close:hover { background: rgba(255,255,255,0.2); }
+        .lightbox-nav { position: absolute; top: 50%; transform: translateY(-50%); width: 48px; height: 48px; border-radius: 50%; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: white; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.3s; }
+        .lightbox-nav:hover { background: rgba(255,255,255,0.22); }
+        .lightbox-prev { left: 16px; }
+        .lightbox-next { right: 16px; }
+
+        /* ─── Sidebar ─── */
+        .sidebar { position: sticky; top: 100px; display: flex; flex-direction: column; gap: 24px; }
+
+        .sidebar-card { background: var(--white); border-radius: var(--radius-xl); padding: 28px; box-shadow: 0 4px 20px rgba(0,53,164,0.06); }
+        .sidebar-card h4 { font-family: var(--font-heading); font-size: 0.72rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--ge-gold); margin-bottom: 18px; }
+
+        .recent-updates { display: flex; flex-direction: column; gap: 0; }
+        .recent-item { display: flex; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--ge-ivory-deep); align-items: flex-start; transition: opacity 0.3s; }
+        .recent-item:last-child { border-bottom: none; padding-bottom: 0; }
+        .recent-item:hover { opacity: 0.75; }
+        .recent-thumb { width: 56px; height: 48px; border-radius: 10px; overflow: hidden; flex-shrink: 0; }
+        .recent-thumb img { width: 100%; height: 100%; object-fit: cover; }
+        .recent-info { flex: 1; min-width: 0; }
+        .recent-date { font-family: var(--font-heading); font-size: 0.65rem; font-weight: 600; letter-spacing: 0.8px; text-transform: uppercase; color: var(--ge-slate-light); margin-bottom: 4px; }
+        .recent-title { font-family: var(--font-heading); font-size: 0.82rem; font-weight: 600; color: var(--ge-blue); line-height: 1.3; }
+        .recent-item.active .recent-title { color: var(--ge-ochre); }
+
+        .sidebar-blue { background: var(--ge-blue); }
+        .sidebar-blue h4 { color: var(--ge-gold); }
+        .sidebar-blue p { font-size: 0.88rem; color: rgba(255,255,255,0.68); line-height: 1.65; font-weight: 300; margin-bottom: 20px; }
+
+        .project-nav { display: flex; gap: 10px; flex-wrap: wrap; }
+        .project-nav a { font-size: 0.78rem; font-family: var(--font-heading); font-weight: 600; color: rgba(255,255,255,0.65); background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12); padding: 5px 12px; border-radius: var(--radius-pill); transition: all 0.3s; white-space: nowrap; }
+        .project-nav a:hover { background: rgba(255,255,255,0.16); color: var(--white); }
+
+        /* Footer */
+        footer { background-color: var(--ge-blue); color: rgba(255,255,255,0.75); padding: 72px 5% 36px; border-radius: var(--radius-xl) var(--radius-xl) 0 0; margin-top: 40px; }
+        .footer-inner { max-width: 1200px; margin: 0 auto; }
+        .footer-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 40px; flex-wrap: wrap; margin-bottom: 56px; }
+        .footer-brand { max-width: 300px; }
+        .footer-logo-img { height: 38px; width: auto; object-fit: contain; filter: brightness(0) invert(1); margin-bottom: 14px; display: block; }
+        .footer-tagline { font-size: 0.9rem; color: rgba(255,255,255,0.5); line-height: 1.6; font-weight: 300; }
+        .footer-links h4 { font-family: var(--font-heading); font-size: 0.78rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--ge-gold); margin-bottom: 18px; }
+        .footer-links ul { list-style: none; }
+        .footer-links li { margin-bottom: 10px; }
+        .footer-links a { font-size: 0.92rem; color: rgba(255,255,255,0.65); transition: color 0.3s; }
+        .footer-links a:hover { color: var(--white); }
+        .footer-bottom { padding-top: 28px; border-top: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: space-between; font-size: 0.82rem; color: rgba(255,255,255,0.4); flex-wrap: wrap; gap: 12px; }
+
+        @media (max-width: 960px) {
+            .site-container { padding-left: 32px !important; padding-right: 32px !important; width: 100%; box-sizing: border-box; }
+            .content-layout { grid-template-columns: 1fr; gap: 40px; padding-top: 48px; padding-bottom: 64px; }
+            .sidebar { position: static; }
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+            .gallery-item.wide { grid-column: span 1; aspect-ratio: 1 / 1; }
+            .gallery-item.tall { grid-row: span 1; aspect-ratio: 1 / 1; }
+            .gallery-item { aspect-ratio: 1 / 1; }
+        }
+        @media (max-width: 900px) {
+            header { padding: 1rem 5%; grid-template-columns: 1fr auto; }
+            .nav-pill { display: none; }
+            .header-right .btn-fill { display: none; }
+            .hamburger { display: flex; }
+            .footer-top { flex-direction: column; gap: 40px; }
+            .hero { height: auto; min-height: 440px; padding-top: 80px; }
+            .hero-content { padding-bottom: 56px; }
+        }
+        @media (max-width: 600px) {
+            .site-container { padding-left: 24px !important; padding-right: 24px !important; }
+            .gallery-grid { grid-template-columns: 1fr; gap: 24px; }
+            .hero-content h1 { font-size: 2.2rem; }
+            .team-quote, .whats-next, .section-card-body { padding: 32px 24px; }
+            .article-intro { font-size: 1.05rem; padding-left: 18px; margin-bottom: 32px; }
+            .highlights-wrap { padding: 8px 20px; }
+            .section-card-header { padding: 20px 24px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header id="mainHeader">
+        <a href="index.html" class="logo-wrap">
+            <img src="assets/goodearth-logo.png" alt="GoodEarth" style="height:36px; object-fit:contain; filter:brightness(0) invert(1);">
+        </a>
+        <nav class="nav-pill">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li class="nav-dropdown active">
+                    <a href="#">Projects</a>
+                    <div class="dropdown-menu">
+                        <a href="malhar-motif-updates.html">Malhar Motif</a>
+                        <a href="malhar-octave-updates.html">Malhar Octave</a>
+                        <a href="malhar-ochre-updates.html" class="current">Malhar Ochre</a>
+                        <a href="malhar-cadence-updates.html">Malhar Cadence</a>
+                        <a href="saarang-update.html">GoodEarth Saarang</a>
+                        <a href="goodearth-umang.html">GoodEarth Umang</a>
+                    </div>
+                </li>
+                <li><a href="https://goodearth.org.in/contact/">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="header-right">
+            <a href="https://goodearth.org.in/contact/" class="btn-fill btn-gold" style="padding:10px 20px;font-size:0.82rem;">
+                <span class="btn-text">Contact Us</span>
+                <span class="btn-dot" style="width:24px;height:24px;right:6px;"></span>
+            </a>
+            <button class="hamburger" id="hamburgerMenu" aria-label="Open menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileNav">
+        <ul>
+            <li><a href="index.html" class="mobile-link">Home</a></li>
+            <li>
+                <a href="#" class="mobile-link" id="mobileProjectsToggle">Projects ▾</a>
+                <div class="mobile-sub" id="mobileProjectsSub">
+                    <a href="malhar-motif-updates.html" class="mobile-link">Malhar Motif</a>
+                    <a href="malhar-octave-updates.html" class="mobile-link">Malhar Octave</a>
+                    <a href="malhar-ochre-updates.html" class="mobile-link">Malhar Ochre</a>
+                    <a href="malhar-cadence-updates.html" class="mobile-link">Malhar Cadence</a>
+                    <a href="saarang-update.html" class="mobile-link">GoodEarth Saarang</a>
+                    <a href="goodearth-umang.html" class="mobile-link">GoodEarth Umang</a>
+                </div>
+            </li>
+            <li><a href="https://goodearth.org.in/contact/" class="mobile-link">Contact Us</a></li>
+        </ul>
+    </div>
+
+    <!-- Hero -->
+    <section class="hero">
+        <img class="hero-img" src="assets/ochre/ochre-hero-2.webp" alt="Malhar Ochre Construction Progress">
+        <div class="hero-overlay"></div>
+        <div class="hero-content site-container" style="padding-left: 0; padding-right: 0; max-width: 1200px; padding: 0 5% 56px;">
+            <div class="hero-breadcrumb">
+                <a href="index.html">Project Updates</a>
+                <span class="sep">/</span>
+                <a href="malhar-ochre-updates.html">Malhar Ochre</a>
+            </div>
+            <h1>Ochre Construction Progress<span class="title-divider">—</span>Second Floors Rise as All Plots Advance</h1>
+            <div class="article-date">April 13, 2026</div>
+        </div>
+    </section>
+
+    <!-- Main content -->
+    <div class="site-container">
+        <div class="content-layout">
+
+            <!-- Article -->
+            <article class="article-body">
+
+                <p class="article-intro fade-up">
+                    The project is progressing at a strong pace overall, with several plots moving into advanced stages and eastern homes already achieving key milestones, including second floor slab completion.
+                </p>
+
+                <h2 class="fade-up">Progress Overview</h2>
+                <p class="fade-up delay-1">Wall conduit installation is a key focus right now and is actively progressing across several plots, with steady advancement on-site. The team is maintaining strong momentum and coordinating efficiently across all active units.</p>
+
+                <div class="highlights-wrap fade-up delay-1">
+                    <ul class="highlights-list">
+                        <li>
+                            <span class="highlight-dot"></span>
+                            <span><strong>Eastern Homes:</strong> Key milestones achieved — second floor slab completion already reached in several units.</span>
+                        </li>
+                        <li>
+                            <span class="highlight-dot"></span>
+                            <span><strong>Western Side:</strong> Compound wall work is fully complete. Blockwork and lintel work are nearing completion across most units.</span>
+                        </li>
+                        <li>
+                            <span class="highlight-dot"></span>
+                            <span><strong>First Floor:</strong> Construction is well underway, with slabs completed in multiple plots across the site.</span>
+                        </li>
+                        <li>
+                            <span class="highlight-dot"></span>
+                            <span><strong>Second Floor:</strong> Work has begun in more advanced units, with consistent progress being maintained.</span>
+                        </li>
+                        <li>
+                            <span class="highlight-dot"></span>
+                            <span><strong>Wall Conduit Installation:</strong> Actively progressing across several plots with steady on-site advancement.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Drone View -->
+                <div class="section-card fade-up">
+                    <div class="section-card-header">
+                        <div class="icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                        </div>
+                        <div>
+                            <h3>Drone's Eye View</h3>
+                            <p>Here's a quick aerial view of the site</p>
+                        </div>
+                    </div>
+                    <div class="section-card-body" style="padding: 0;">
+                        <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:0 0 var(--radius-xl) var(--radius-xl);">
+                            <iframe
+                                src="https://www.youtube.com/embed/wkVAosCY9QI"
+                                title="Malhar Ochre — Drone's Eye View"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen
+                                style="position:absolute; top:0; left:0; width:100%; height:100%;">
+                            </iframe>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 360 View -->
+                <div class="section-card fade-up">
+                    <div class="section-card-header">
+                        <div class="icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+                        </div>
+                        <div>
+                            <h3>360° View</h3>
+                            <p>Explore the site from wherever you are — a 360° glimpse of where it all begins</p>
+                        </div>
+                    </div>
+                    <div class="section-card-body" style="padding: 0;">
+                        <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:0 0 var(--radius-xl) var(--radius-xl);">
+                            <iframe
+                                src="https://www.youtube.com/embed/DbdFlrb_TZE"
+                                title="Ochre Walk Through — March 2026"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen
+                                style="position:absolute; top:0; left:0; width:100%; height:100%;">
+                            </iframe>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team Quote -->
+                <div class="team-quote fade-up">
+                    <h3>A Quick Word from our Projects Team</h3>
+                    <p>"The pace we're maintaining across all plots reflects the dedication of our teams on the ground. We're especially pleased with the eastern homes hitting second-floor milestones ahead of schedule — a strong signal of things to come for the whole community."</p>
+                </div>
+
+                <!-- What's Next -->
+                <div class="whats-next fade-up">
+                    <div class="next-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                    </div>
+                    <div>
+                        <h3>What's Next</h3>
+                        <p>In the coming weeks, brickwork and slab completions are scheduled for the remaining units. The team will continue to push forward on wall conduit installation and prepare for the next phase of interior work in the more advanced plots.</p>
+                    </div>
+                </div>
+
+                <!-- Gallery -->
+                <div class="gallery-section fade-up">
+                    <div class="vertical-line"></div>
+                    <h2>Gallery</h2>
+                    <div class="gallery-grid" id="galleryGrid">
+                        <div class="gallery-item wide" data-index="0">
+                            <img src="assets/ochre/ochre-g1.webp" alt="Ochre Construction Gallery 1">
+                        </div>
+                        <div class="gallery-item" data-index="1">
+                            <img src="assets/ochre/ochre-g11.webp" alt="Ochre Construction Gallery 2">
+                        </div>
+                        <div class="gallery-item" data-index="2">
+                            <img src="assets/ochre/ochre-g111.webp" alt="Ochre Construction Gallery 3">
+                        </div>
+                        <div class="gallery-item" data-index="3">
+                            <img src="assets/ochre/ochre-g14.webp" alt="Ochre Construction Gallery 4">
+                        </div>
+                        <div class="gallery-item" data-index="4">
+                            <img src="assets/ochre/ochre-g2.webp" alt="Ochre Construction Gallery 5">
+                        </div>
+                        <div class="gallery-item" data-index="5">
+                            <img src="assets/ochre/ochre-g22.webp" alt="Ochre Construction Gallery 6">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Back link -->
+                <div style="margin-top: 48px; padding-top: 32px; border-top: 1px solid var(--ge-ivory-deep); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;">
+                    <a href="malhar-ochre-updates.html" class="btn-fill btn-blue">
+                        <span class="btn-text">← All Ochre Updates</span>
+                        <span class="btn-dot" style="width:24px;height:24px;right:6px;"></span>
+                    </a>
+                    <a href="index.html" style="font-family:var(--font-heading); font-size:0.82rem; font-weight:600; color:var(--ge-slate-light); letter-spacing:0.5px;">View All Projects →</a>
+                </div>
+
+            </article>
+
+            <!-- Sidebar -->
+            <aside class="sidebar">
+
+                <div class="sidebar-card">
+                    <h4>Recent Updates</h4>
+                    <div class="recent-updates">
+                        <a href="ochre-blog-construction-progress.html" class="recent-item active">
+                            <div class="recent-thumb"><img src="assets/ochre/ochre-hero-1.webp" alt=""></div>
+                            <div class="recent-info">
+                                <div class="recent-date">Apr 13, 2026</div>
+                                <div class="recent-title">Ochre Construction Progress — Second Floors Rise</div>
+                            </div>
+                        </a>
+                        <a href="#" class="recent-item">
+                            <div class="recent-thumb"><img src="assets/ochre/ochre-oct-updates.jpg" alt=""></div>
+                            <div class="recent-info">
+                                <div class="recent-date">Jan 6, 2026</div>
+                                <div class="recent-title">Construction Progress Highlights</div>
+                            </div>
+                        </a>
+                        <a href="#" class="recent-item">
+                            <div class="recent-thumb"><img src="assets/ochre/ochre-july25.webp" alt=""></div>
+                            <div class="recent-info">
+                                <div class="recent-date">Oct 23, 2025</div>
+                                <div class="recent-title">Progress Update: Ochre Homes Take Shape</div>
+                            </div>
+                        </a>
+                        <a href="#" class="recent-item">
+                            <div class="recent-thumb"><img src="assets/ochre/ochre-june25.webp" alt=""></div>
+                            <div class="recent-info">
+                                <div class="recent-date">Aug 6, 2025</div>
+                                <div class="recent-title">Ground Floor Slab and Brickwork Advancements</div>
+                            </div>
+                        </a>
+                        <a href="#" class="recent-item">
+                            <div class="recent-thumb"><img src="assets/ochre/ochre-update-3.webp" alt=""></div>
+                            <div class="recent-info">
+                                <div class="recent-date">Nov 29, 2024</div>
+                                <div class="recent-title">Malhar Ochre Ground Breaking Ceremony</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="sidebar-card sidebar-blue">
+                    <h4>About GoodEarth</h4>
+                    <p>At GoodEarth, we bring together like-minded people with a common vision of building a sustainable future — one community at a time.</p>
+                    
+                    <div class="project-nav">
+                        <a href="malhar-motif-updates.html">Motif</a>
+                        <a href="malhar-octave-updates.html">Octave</a>
+                        <a href="malhar-ochre-updates.html" class="active">Ochre</a>
+                        <a href="malhar-cadence-updates.html">Cadence</a>
+                        <a href="saarang-update.html">Saarang</a>
+                        <a href="goodearth-umang.html">Umang</a>
+                    </div>
+                </div>
+
+            </aside>
+        </div>
+    </div>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" id="lightboxClose">✕</button>
+        <button class="lightbox-nav lightbox-prev" id="lightboxPrev">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <img id="lightboxImg" src="" alt="">
+        <button class="lightbox-nav lightbox-next" id="lightboxNext">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <img src="assets/goodearth-logo.png" alt="GoodEarth" class="footer-logo-img">
+                    <p class="footer-tagline">Cultivating conscious communities since 1996. Regenerative living rooted in nature, craft, and community.</p>
+                </div>
+                <div class="footer-links">
+                    
+                    <h4>Projects</h4>
+                    <ul>
+                        <li><a href="malhar-motif-updates.html">Malhar Motif</a></li>
+                        <li><a href="malhar-octave-updates.html">Malhar Octave</a></li>
+                        <li><a href="malhar-ochre-updates.html">Malhar Ochre</a></li>
+                        <li><a href="malhar-cadence-updates.html">Malhar Cadence</a></li>
+                        <li><a href="saarang-update.html">GoodEarth Saarang</a></li>
+                        <li><a href="goodearth-umang.html">GoodEarth Umang</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Connect</h4>
+                    <ul>
+                        <li><a href="https://goodearth.org.in">goodearth.org.in</a></li>
+                        <li><a href="https://goodearth.org.in/contact/">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 GoodEarth. All Rights Reserved. Images courtesy GoodEarth Communities.</p>
+                <p>Kambipura, Karnataka, India</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Header scroll
+        const header = document.getElementById('mainHeader');
+        window.addEventListener('scroll', () => header.classList.toggle('scrolled', window.scrollY > 60), { passive: true });
+
+        // Mobile menu
+        const hamburger = document.getElementById('hamburgerMenu');
+        const mobileNav = document.getElementById('mobileNav');
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            mobileNav.classList.toggle('active');
+            document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : '';
+        });
+        document.getElementById('mobileProjectsToggle').addEventListener('click', e => {
+            e.preventDefault();
+            document.getElementById('mobileProjectsSub').classList.toggle('open');
+        });
+        document.querySelectorAll('.mobile-link:not(#mobileProjectsToggle)').forEach(l => l.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            mobileNav.classList.remove('active');
+            document.body.style.overflow = '';
+        }));
+
+        // Fade up
+        const observer = new IntersectionObserver(entries => entries.forEach(e => {
+            if (e.isIntersecting) { e.target.classList.add('is-visible'); observer.unobserve(e.target); }
+        }), { threshold: 0.1 });
+        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+        // Lightbox
+        const galleryItems = Array.from(document.querySelectorAll('.gallery-item'));
+        const galleryImages = galleryItems.map(item => ({
+            src: item.querySelector('img').src,
+            alt: item.querySelector('img').alt
+        }));
+        let currentIndex = 0;
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightboxImg');
+
+        function openLightbox(index) {
+            currentIndex = index;
+            lightboxImg.src = galleryImages[index].src;
+            lightboxImg.alt = galleryImages[index].alt;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        function showNext() { currentIndex = (currentIndex + 1) % galleryImages.length; lightboxImg.src = galleryImages[currentIndex].src; }
+        function showPrev() { currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length; lightboxImg.src = galleryImages[currentIndex].src; }
+
+        galleryItems.forEach((item, i) => item.addEventListener('click', () => openLightbox(i)));
+        document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+        document.getElementById('lightboxNext').addEventListener('click', showNext);
+        document.getElementById('lightboxPrev').addEventListener('click', showPrev);
+        lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+        document.addEventListener('keydown', e => {
+            if (!lightbox.classList.contains('active')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowRight') showNext();
+            if (e.key === 'ArrowLeft') showPrev();
+        });
+    </script>
+</body>
+</html>
