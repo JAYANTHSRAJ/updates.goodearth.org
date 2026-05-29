@@ -138,7 +138,20 @@
         .lightbox-prev { left: 16px; }
         .lightbox-next { right: 16px; }
 
-@media(max-width:960px){
+        /* Section Card Styles for Video Embeds */
+        .section-card { border-radius: var(--radius-xl); overflow: hidden; margin: 36px 0; box-shadow: 0 4px 20px rgba(0,53,164,0.05); border: 1px solid rgba(0,53,164,0.06); }
+        .section-card-header { background: var(--ge-blue); padding: 20px 28px; display: flex; align-items: center; gap: 14px; }
+        .section-card-header .icon { width: 36px; height: 36px; border-radius: 10px; background: rgba(255,255,255,0.12); display: flex; align-items: center; justify-content: center; color: var(--ge-gold); flex-shrink: 0; }
+        .section-card-header h3 { font-family: var(--font-heading); font-size: 1rem; font-weight: 600; color: var(--white); margin: 0; }
+        .section-card-header p { font-size: 0.82rem; color: rgba(255,255,255,0.6); margin: 0; font-weight: 300; }
+        .section-card-body { background: var(--white); padding: 0; }
+        @media(max-width:600px){
+            .section-card-header { padding: 20px 24px; }
+            .section-card-body { padding: 0; }
+        }
+
+
+        @media(max-width:960px){
             .site-container{padding-left:32px!important;padding-right:32px!important;}
             .content-layout{grid-template-columns:1fr;gap:40px;padding-top:48px;padding-bottom:64px;}
             .sidebar{position:static;}
@@ -236,6 +249,58 @@
                 <h2 class="fade-up">Construction Progress</h2>
                 <p class="fade-up delay-1">The site is humming with activity. Each plot is showing vertical growth as the architectural vision of Ochre begins to materialize across the landscape.</p>
                 
+
+
+                <!-- Drone View -->
+                <div class="section-card fade-up">
+                    <div class="section-card-header">
+                        <div class="icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                        </div>
+                        <div>
+                            <h3>Drone's Eye View</h3>
+                            <p>Here's a quick aerial view of the site</p>
+                        </div>
+                    </div>
+                    <div class="section-card-body">
+                        <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:0 0 var(--radius-xl) var(--radius-xl);">
+                            <iframe
+                                src="https://www.youtube.com/embed/lep_-z0QaCY?rel=0&modestbranding=1"
+                                title="Malhar Ochre — Drone's Eye View"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen
+                                style="position:absolute; top:0; left:0; width:100%; height:100%;">
+                            </iframe>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 360 View -->
+                <div class="section-card fade-up">
+                    <div class="section-card-header">
+                        <div class="icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+                        </div>
+                        <div>
+                            <h3>360° View</h3>
+                            <p>Explore the site from wherever you are — a 360° glimpse of where it all begins</p>
+                        </div>
+                    </div>
+                    <div class="section-card-body">
+                        <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:0 0 var(--radius-xl) var(--radius-xl);">
+                            <iframe
+                                src="https://www.youtube.com/embed/fydiPsc9R6s?rel=0&modestbranding=1"
+                                title="Ochre Walk Through — January 2026"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen
+                                style="position:absolute; top:0; left:0; width:100%; height:100%;">
+                            </iframe>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="team-quote fade-up">
                     <h3>A Quick Word from our Projects Team</h3>
                     <p>"The work at Malhar Ochre is progressing with great momentum. We are focused on maintaining the highest standards of craftsmanship as we reach each milestone in the construction journey."</p>
@@ -278,7 +343,7 @@
             <aside class="sidebar">
                 <div class="sidebar-card">
                     <h4>Ochre Updates</h4>
-                                                                                <div class="recent-updates">
+                                                                                                                                    <div class="recent-updates">
                         <a href="ochre-may-2026.html" class="recent-item">
                             <div class="recent-thumb"><img src="../assets/ochre/ochre-may-2026-images/goodearth-malhar-ochre-may-2026-hero.webp" alt=""></div>
                             <div class="recent-info">
@@ -287,7 +352,69 @@
                             </div>
                         </a>
                         <a href="ochre-april-2026.html" class="recent-item">
-                            <div class="recent-thumb"><img src="../assets/ochre/ochre-april-2026-images/goodearth-malhar-ochre-april-2026-hero.webp" alt=""></div>
+                            <div class="recent-thumb"><img src="../assets/ochre/ochre-hero-1.webp" alt=""></div>
+                            <div class="recent-info">
+                                <div class="recent-date">Apr 2026</div>
+                                <div class="recent-title">Second Floors Rise as All Plots Advance</div>
+                            </div>
+                        </a>
+                        <a href="ochre-january-2026.html" class="recent-item active">
+                            <div class="recent-thumb"><img src="../assets/ochre/ochre-oct-updates.jpg" alt=""></div>
+                            <div class="recent-info">
+                                <div class="recent-date">Jan 2026</div>
+                                <div class="recent-title">Construction Progress Highlights</div>
+                            </div>
+                        </a>
+                        <a href="ochre-october-2025.html" class="recent-item">
+                            <div class="recent-thumb"><img src="../assets/ochre/ochre-july25.webp" alt=""></div>
+                            <div class="recent-info">
+                                <div class="recent-date">Oct 2025</div>
+                                <div class="recent-title">Progress Update: Ochre Homes Take Shape</div>
+                            </div>
+                        </a>
+                        <a href="ochre-august-2025.html" class="recent-item">
+                            <div class="recent-thumb"><img src="../assets/ochre/ochre-june25.webp" alt=""></div>
+                            <div class="recent-info">
+                                <div class="recent-date">Aug 2025</div>
+                                <div class="recent-title">Ground Floor Slab and Brickwork</div>
+                            </div>
+                        </a>
+                        <a href="ochre-june-2025.html" class="recent-item">
+                            <div class="recent-thumb"><img src="../assets/ochre/ochre-may25.jpg" alt=""></div>
+                            <div class="recent-info">
+                                <div class="recent-date">Jul 2025</div>
+                                <div class="recent-title">Malhar Ochre — June '25 Update</div>
+                            </div>
+                        </a>
+                        <a href="ochre-updates.html" class="recent-item">
+                            <div class="recent-thumb"><img src="https://cdn.prod.website-files.com/6790cdde973c86717df611a6/6818682b69009aecbd5020bf_Ochre%201.jpg" alt=""></div>
+                            <div class="recent-info">
+                                <div class="recent-date">Oct 2023</div>
+                                <div class="recent-title">Malhar Ochre - Updates</div>
+                            </div>
+                        </a>
+                        <a href="ochre-february-2025.html" class="recent-item">
+                            <div class="recent-thumb"><img src="../assets/ochre/ochre-update-1.jpg" alt=""></div>
+                            <div class="recent-info">
+                                <div class="recent-date">Feb 2025</div>
+                                <div class="recent-title">The Foundation Stage</div>
+                            </div>
+                        </a>
+                        <a href="ochre-december-2024.html" class="recent-item">
+                            <div class="recent-thumb"><img src="../assets/ochre/ochre-update-2.webp" alt=""></div>
+                            <div class="recent-info">
+                                <div class="recent-date">Dec 2024</div>
+                                <div class="recent-title">The Excavation & Leveling Stage</div>
+                            </div>
+                        </a>
+                        <a href="ochre-bhoomi-pooja.html" class="recent-item">
+                            <div class="recent-thumb"><img src="../assets/ochre/ochre-update-3.webp" alt=""></div>
+                            <div class="recent-info">
+                                <div class="recent-date">Nov 2024</div>
+                                <div class="recent-title">Bhoomi Pooja — A New Beginning</div>
+                            </div>
+                        </a>
+                    </div>
                             <div class="recent-info">
                                 <div class="recent-date">Apr 2026</div>
                                 <div class="recent-title">A Glimpse Into Ongoing Construction Progress</div>
