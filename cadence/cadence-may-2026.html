@@ -187,6 +187,32 @@
             .team-quote{padding:32px 24px;}
             .whats-next{padding:24px 20px;}
         }
+    
+        @media print {
+            body, html {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                height: 3908px !important;
+                overflow: hidden !important;
+            }
+            .fade-up {
+                opacity: 1 !important;
+                transform: none !important;
+                transition: none !important;
+            }
+            @page {
+                size: 1440px 3908px;
+                margin: 0mm;
+            }
+            header {
+                position: absolute !important;
+                background-color: rgba(0, 83, 164, 0.9) !important;
+                width: 100% !important;
+            }
+            .sidebar {
+                position: relative !important;
+            }
+        }
     </style>
 </head>
 <body>

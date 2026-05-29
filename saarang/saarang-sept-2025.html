@@ -26,6 +26,7 @@
         .btn-dot{position:absolute;right:8px;top:50%;transform:translateY(-50%);width:28px;height:28px;border-radius:50%;z-index:1;transition:transform .6s cubic-bezier(.4,0,.2,1);}
         .btn-fill:hover .btn-dot{transform:translateY(-50%) scale(40);}
         .btn-gold{background:var(--ge-gold);color:var(--white);}.btn-gold .btn-dot{background:var(--ge-ivory);}.btn-gold:hover{color:var(--ge-slate);}
+   .btn-blue{background:var(--ge-blue);color:var(--white);}.btn-blue .btn-dot{background:var(--ge-gold);}.btn-blue:hover{color:var(--ge-blue);}
         /* Header */
         header{position:fixed;top:0;left:0;width:100%;padding:1.4rem 5%;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;z-index:1000;transition:background-color .4s ease,padding .4s ease,box-shadow .4s ease;}
         header.scrolled{background-color:rgba(0,61,122,.97);backdrop-filter:blur(12px);padding:.9rem 5%;box-shadow:0 4px 24px rgba(0,0,0,.12);}
@@ -357,7 +358,17 @@
             </section>
 
         </div>
-                </article>
+                
+                <!-- Back link -->
+                <div style="margin-top:48px;padding-top:32px;border-top:1px solid var(--ge-ivory-deep);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px; width: 100%;">
+                    <a href="../saarang-update.html" class="btn-fill btn-blue">
+                        <span class="btn-text">← All Saarang Updates</span>
+                        <span class="btn-dot" style="width:24px;height:24px;right:6px;"></span>
+                    </a>
+                    <a href="../index.html" style="font-family:var(--font-heading);font-size:.82rem;font-weight:600;color:var(--ge-slate-light);letter-spacing:.5px;">View All Projects →</a>
+                </div>
+
+</article>
 
         <!-- Sidebar -->
         <aside class="sidebar">

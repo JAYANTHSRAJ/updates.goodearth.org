@@ -145,11 +145,37 @@
 
         /* Content panel */
         .cp-wrap { position: relative; margin-top: 0; }
-        .cp-arrow { position: absolute; top: 50%; z-index: 10; transform: translateY(-50%); width: 54px; height: 54px; border-radius: 0; background: var(--white); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--ge-slate); transition: background 0.3s, color 0.3s; box-shadow: 0 4px 16px rgba(0,0,0,0.1); }
-        .cp-arrow:hover { background: var(--ge-project); color: #fff; }
-        .cp-arrow:disabled { opacity: 0.25; cursor: default; }
-        .cp-arrow-prev { left: 0; }
-        .cp-arrow-next { right: 0; }
+        .cp-arrow {
+            position: absolute;
+            top: 57%; /* Center vertically with timeline images */
+            z-index: 12;
+            transform: translateY(-50%);
+            width: 48px;
+            height: 48px;
+            border-radius: 50%; /* Make circular */
+            background: var(--white);
+            border: 1px solid rgba(0, 53, 164, 0.1);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--ge-blue);
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        .cp-arrow:hover:not(:disabled) {
+            background: var(--ge-gold);
+            color: var(--white);
+            transform: translateY(-50%) scale(1.08);
+            box-shadow: 0 6px 18px rgba(214, 145, 0, 0.3);
+        }
+        .cp-arrow:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+        .cp-arrow-prev { left: -48px; }
+        .cp-arrow-next { right: -48px; }
         .cp-card { background: var(--ge-ivory-deep); border-radius: 24px; margin: 0 64px; padding: 44px 52px 48px; min-height: 260px; display: flex; flex-direction: column; justify-content: center; transition: opacity 0.3s ease; }
         .cp-card.fading { opacity: 0; }
         .cp-meta { font-family: var(--font-heading); font-size: 0.68rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--ge-project); margin-bottom: 14px; }
@@ -176,6 +202,8 @@
         .footer-bottom { padding-top: 28px; border-top: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: space-between; align-items: center; font-size: 0.82rem; color: rgba(255,255,255,0.4); flex-wrap: wrap; gap: 12px; }
 
         @media (max-width: 900px) {
+            .cp-arrow-prev { left: -16px; }
+            .cp-arrow-next { right: -16px; }
             :root { --tl-item-w: 160px; --tl-img-h: 220px; --bullet-size: 40px; }
             .site-container { padding-left: 32px !important; padding-right: 32px !important; }
             header { padding: 1rem 5%; grid-template-columns: 1fr auto; }
@@ -189,6 +217,8 @@
             .cp-card { padding: 32px 28px 36px; margin: 0 48px; }
         }
         @media (max-width: 600px) {
+            .cp-arrow-prev { left: -8px; }
+            .cp-arrow-next { right: -8px; }
             :root { --tl-item-w: 140px; --tl-img-h: 190px; --bullet-size: 36px; }
             .site-container { padding-left: 24px !important; padding-right: 24px !important; }
             .project-intro { grid-template-columns: 1fr; }
@@ -297,6 +327,12 @@
 
         <div class="tl-section fade-up delay-2">
             <div class="tl-scroll-outer">
+            <button class="cp-arrow cp-arrow-prev" id="cp-prev" aria-label="Previous">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+            </button>
+            <button class="cp-arrow cp-arrow-next" id="cp-next" aria-label="Next">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
                 <div class="tl-track" id="tl-track">
 
                     <div class="tl-item" data-index="0">
@@ -370,12 +406,8 @@
 
         <!-- Content Panel -->
         <div class="cp-wrap" style="margin-top:0;">
-            <button class="cp-arrow cp-arrow-prev" id="cp-prev" aria-label="Previous">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
-            </button>
-            <button class="cp-arrow cp-arrow-next" id="cp-next" aria-label="Next">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-            </button>
+            
+            
             <div class="cp-card" id="cp-card">
                 <div class="cp-meta" id="cp-meta"></div>
                 <h2 class="cp-title" id="cp-title"></h2>
