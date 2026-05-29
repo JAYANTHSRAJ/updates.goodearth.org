@@ -162,7 +162,35 @@
         .lightbox-prev { left: 16px; }
         .lightbox-next { right: 16px; }
 
-@media(max-width:960px){
+        /* Section Card Styles for Video Embeds */
+        .section-card { border-radius: var(--radius-xl); overflow: hidden; margin: 36px 0; box-shadow: 0 4px 20px rgba(0,53,164,0.05); border: 1px solid rgba(0,53,164,0.06); }
+        .section-card-header { background: var(--ge-blue); padding: 20px 28px; display: flex; align-items: center; gap: 14px; }
+        .section-card-header .icon { width: 36px; height: 36px; border-radius: 10px; background: rgba(255,255,255,0.12); display: flex; align-items: center; justify-content: center; color: var(--ge-gold); flex-shrink: 0; }
+        .section-card-header h3 { font-family: var(--font-heading); font-size: 1rem; font-weight: 600; color: var(--white); margin: 0; }
+        .section-card-header p { font-size: 0.82rem; color: rgba(255,255,255,0.6); margin: 0; font-weight: 300; }
+        .section-card-body { background: var(--white); padding: 0; }
+        @media(max-width:600px){
+            .section-card-header { padding: 20px 24px; }
+            .section-card-body { padding: 0; }
+        }
+
+        /* Premium Team Quote Card with Video (Used in June 2025) */
+        .team-quote-video-card { background: var(--ge-blue); border-radius: var(--radius-xl); overflow: hidden; margin: 36px 0; color: var(--white); display: grid; grid-template-columns: 280px 1fr; box-shadow: 0 10px 30px rgba(0,53,164,0.1); border: 1px solid rgba(0,53,164,0.06); }
+        .team-quote-video-wrap { position: relative; width: 100%; aspect-ratio: 3/4; overflow: hidden; background: #000; }
+        .team-quote-video-wrap iframe { position: absolute; top:0; left:0; width:100%; height:100%; border:none; }
+        .team-quote-content { padding: 40px 44px; display: flex; flex-direction: column; justify-content: center; }
+        .team-quote-content h3 { font-size: 1.05rem; font-weight: 700; letter-spacing: .5px; text-transform: uppercase; color: var(--ge-gold); margin-bottom: 16px; font-family: var(--font-heading); }
+        .team-quote-content p { font-size: 1.1rem; line-height: 1.75; color: rgba(255,255,255,0.9); font-style: italic; font-weight: 300; margin-bottom: 16px; }
+        .team-quote-author { font-family: var(--font-heading); font-size: 0.82rem; font-weight: 600; color: var(--ge-gold); text-transform: uppercase; letter-spacing: 1px; }
+        .team-quote-author span { display: block; font-size: 0.72rem; color: rgba(255,255,255,0.6); text-transform: none; font-weight: 400; letter-spacing: 0; margin-top: 4px; }
+        @media (max-width: 768px) {
+            .team-quote-video-card { grid-template-columns: 1fr; }
+            .team-quote-video-wrap { aspect-ratio: 16/9; }
+            .team-quote-content { padding: 32px 24px; }
+        }
+
+
+        @media(max-width:960px){
             .site-container{padding-left:32px!important;padding-right:32px!important;}
             .content-layout{grid-template-columns:1fr;gap:40px;padding-top:48px;padding-bottom:64px;}
             .sidebar{position:static;}
@@ -299,6 +327,33 @@
                             <span>Site grading and preparation ongoing to enable foundation work in the coming weeks.</span>
                         </li>
                     </ul>
+                </div>
+
+
+
+                <!-- Drone View -->
+                <div class="section-card fade-up">
+                    <div class="section-card-header">
+                        <div class="icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                        </div>
+                        <div>
+                            <h3>Drone's Eye View</h3>
+                            <p>Here's a quick aerial view of the site</p>
+                        </div>
+                    </div>
+                    <div class="section-card-body">
+                        <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:0 0 var(--radius-xl) var(--radius-xl);">
+                            <iframe
+                                src="https://www.youtube.com/embed/71wDNkNv1Ug?rel=0&modestbranding=1"
+                                title="Malhar Cadence — Drone's Eye View"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen
+                                style="position:absolute; top:0; left:0; width:100%; height:100%;">
+                            </iframe>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="team-quote fade-up">
